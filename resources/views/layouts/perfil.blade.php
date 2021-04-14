@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-
+@section('plugins.Sweetalert2',true)
 @section('title', 'Perfil')
 @section('plugins.Chartjs',true)
 @section('content')
@@ -9,56 +9,65 @@
 
         <!-- Profile Image -->
         <div class="card card-primary card-outline bg-dark">
-          <div class="card-body box-profile">
+          <div class="card-body ">
             @csrf
             <h3 class="profile-username text-center">{{$user->name}}</h3>
             <p class="text-muted text-center">Software Engineer</p>
-          </div>
-        </div>
-        <div class="card card-primary bg-dark">
-          <div class="card-header">
-            <h3 class="card-title">Acerca de mi</h3>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <strong><i class="fas fa-book mr-1"></i> Educación</strong>
-
-            <p class="text-muted">
-              {{$user->educt}}
-            </p>
-
-            <hr>
-
-            <strong><i class="fas fa-map-marker-alt mr-1"></i> Ubicacion</strong>
-
-            <p class="text-muted">{{$user->locat}}</p>
-            <hr>
-          </div>
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-      </div>
-      <!-- /.col -->
-      <div class="col-md-9">
-        <div class="card bg-dark">
-          <div class="card-header p-2">
-             <h4 class="nav-link active" href="#activity" data-toggle="tab">Cuenta | valance</h4>
-          </div>
-          <div class="card-body">
-            <div class="container">
-             <div class="row">
-              <div class="col-4">
-                <h1>MXN:{{"$ " . number_format($user->capital, 0, ",", ".")}}.00
-                </h1> <br>
+            <br>
+            
+           
+              <div class="nav flex-column  " id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link  nav-link navbar-dark bg-dark active  " id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Fondear</a>
+                <a class="nav-link nav-link navbar-dark bg-dark" id="v-pills-retirar-tab" data-toggle="pill" href="#v-pills-retirar" role="tab" aria-controls="v-pills-retirar" aria-selected="false">Retirar</a>
+                <a class="nav-link nav-link navbar-dark bg-dark" id="v-pills-config-tab" data-toggle="pill" href="#v-pills-config" role="tab" aria-controls="v-pills-config" aria-selected="false">Configuracion</a>
               </div>
-             </div>
-            </div>
-            </div>
+              
           </div>
         </div>
+      </div>
+        <div class="col-md-8">
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <div class="container text-center">
+            <h3>Fondear a cuenta bancaria</h3>
+            <h6 class="text-muted">Beneficiario<h6>
+              <h4>REAIGROUP</h4>
+              <br>
+              <h6 class="text-muted">Banco reseptor</h6>
+              <h4>Bancomer</h4>
+              <h6 class="text-muted">Clabe</h6>
+              <h4>646180115427950481</h4>
+            <h6>Tu referencia: 415200{{$user->id}}</h6>
+          </div>
+          </div>
+          <div class="tab-pane fade" id="v-pills-retirar" role="tabpanel" aria-labelledby="v-pills-retirar-tab">
+            <div class="container text-center">
+              <h3>Retirar a cuenta bancaria</h3>
+              <h6 class="text-muted">Tienes: <h6>
+                <h4>{{"$ " . number_format($user->capital, 0, ",", ",")}}.00</h4>
+                <br>
+                <h6 class="text-muted">Monto</h6>
+            
+                <input type="text" class="form-control  col-md-4 mx-auto"  placeholder="100.00">
+         
+                <br>
+                <h6 class="text-muted ">Ingresa tu cuenta bancaria</h6>
+                <input type="text" class="form-control  col-md-4 mx-auto"  placeholder="123456">
+                <br>
+                <button type="button" class="btn btn-secondary">Retirar</button>
+                <br>
+            </div>
+            <br> 
+          </div>
+          <div class="tab-pane fade" id="v-pills-config" role="tabpanel" aria-labelledby="v-pills-config-tab">
+            <h2>Configuracion de la cuenta</h2>
+          </div>
+         
+         
+        </div>
+      </div>
+      
       </div>
     </div>
   </div>
 @endsection
-
-    

@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('educt');
             $table->string('locat');
             $table->float('capital');
+            $table->float('folio');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
