@@ -34,6 +34,10 @@ Route::get('dashboard', function () {
     $user = Auth::user();
     return view('layouts.dashboard', compact('user'));
 });
+Route::get('invertirBarlo', function () {
+    $user = Auth::user();
+    return view('layouts.desarrollos.invertirBarlo', compact('user'));
+});
 
 Route::get('barlovento', function (){
     $user = Auth::user();

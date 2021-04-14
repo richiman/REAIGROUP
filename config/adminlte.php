@@ -125,7 +125,7 @@ return [
     'classes_brand_text' => '',
     'classes_content_wrapper' => 'bg-gradient-dark',
     'classes_content_header' => 'bg-gradient-dark',
-    'classes_content' => 'bg-gradient-dark',
+    'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-info elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-dark navbar-light',
@@ -249,7 +249,7 @@ return [
                             'url'  => 'barlovento',
                         ],[
                             'text' => 'Invertir',
-                            'url'  => '#',
+                            'url'  => 'invertirBarlo',
                         ],[
                             'text' => 'Pagina web',
                             'url'  => '#',
