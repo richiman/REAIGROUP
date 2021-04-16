@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\User;
 use App\Proyects;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,6 +44,20 @@ Route::get('barlovento', function (){
     $user = Auth::user();
     return view ('layouts.desarrollos.barlovento', compact('user'));
 });
+
+
+//editar Usuario
+
+Route::put('user/{id}', function(Request $request, $id){
+       $user = User::findOrFail($id);
+       $user->direccion = $request->input('direccion');
+       $user->ciudad = $request->input('ciudad');
+       $user->estado = $request->input('estado');
+       $user->telf = $request->input('telf');
+       $user->cp = $request->input('cp');
+       $user->save();
+       return redirect('/perfil')->with('info', 'Datos de perfil actualizados correctamente');
+})->name('user.update');
 
 
 

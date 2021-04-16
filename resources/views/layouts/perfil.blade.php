@@ -3,9 +3,17 @@
 @section('title', 'Perfil')
 @section('plugins.Chartjs',true)
 @section('content')
+@if (session('info'))
+<div class="alert alert-success">
+{{session('info')}}
+</div>
+@endif
 <div class="container-fluid">
     <div class="row">
+     
+
       <div class="col-md-3">
+       
 
         <!-- Profile Image -->
         <div class="card card-primary card-outline bg-dark">
@@ -60,13 +68,48 @@
             <br> 
           </div>
           <div class="tab-pane fade" id="v-pills-config" role="tabpanel" aria-labelledby="v-pills-config-tab">
-            <h2>Configuracion de la cuenta</h2>
+            
+            <div class="container">
+              <h2 class="text-center">Configuracion de la cuenta</h2>
+              <form action="{{ route('user.update', $user->id) }}" method="POST">
+                @method('put')
+                @csrf
+                <div class="">
+                  <label for="">Nombre completo</label>
+                  <input type="text" class="form-control" value="{{$user->name}}" disabled >
+                </div>
+                <div class="">
+                  <label for="">Correo</label>
+                  <input type="email" class="form-control" value="{{$user->email}}"  disabled>
+                </div>
+                <div class="">
+                  <label for="">Numero de telefono</label>
+                  <input type="number" class="form-control" value="{{$user->telf}}" name="telf"  placeholder="3111234567">
+                </div>
+                <div class="form-group">
+                  <label for="">Direccion</label>
+                  <input type="text" class="form-control" value="{{$user->direccion}}" name="direccion" placeholder="Calle numero col">
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="">Ciudad</label>
+                    <input type="text" class="form-control" value="{{$user->ciudad}}" name="ciudad" >
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="">Estado</label>
+                 <input type="text" class="form-control" value="{{$user->estado}}" name="estado" >
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="">Codigo postal</label>
+                    <input type="text" class="form-control" name="cp" value="{{$user->cp}}">
+                  </div>
+                </div>
+                <button type="submit" style="float: right;" class="btn btn-primary">Guardar</button>
+              </form>
+            </div>
           </div>
-         
-         
         </div>
       </div>
-      
       </div>
     </div>
   </div>
