@@ -42,7 +42,7 @@
               <h4>REAIGROUP</h4>
               <br>
               <h6 class="text-muted">Banco reseptor</h6>
-              <h4>Bancomer</h4>
+              <h4>BBVA</h4>
               <h6 class="text-muted">Clabe</h6>
               <h4>646180115427950481</h4>
             <h6>Tu referencia: 415200{{$user->id}}</h6>
