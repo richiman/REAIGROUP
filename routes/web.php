@@ -25,7 +25,7 @@ Route::get('Proyectos', function () {
     return view('layouts.proyectos', compact('proyects'));
 });
 
-Route::get('perfil', function () {
+Route::get('profile', function () {
     $user = Auth::user();
     return view('layouts.perfil', compact('user'));
     
@@ -55,6 +55,11 @@ Route::put('user/{id}', function(Request $request, $id){
        $user->estado = $request->input('estado');
        $user->telf = $request->input('telf');
        $user->cp = $request->input('cp');
+        if($request -> hasFile('imagen')){
+            $file = $request -> imagen;
+            $file->move(public_path(). '/imagenes', $file->getClientOriginalName());
+            $user->imagen = $file->getClientOriginalName();
+        }
        $user->save();
        return redirect('/perfil')->with('info', 'Datos de perfil actualizados correctamente');
 })->name('user.update');

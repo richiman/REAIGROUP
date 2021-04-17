@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'capital', 'ciudad', 'estado', 'cp', 'direccion', 'telf'
+        'name', 'email', 'password','imagen', 'capital', 'ciudad', 'estado', 'cp', 'direccion', 'telf'
     ];
 
     /**
@@ -38,7 +38,7 @@ class User extends Authenticatable
     ];
 
     public function adminlte_image(){
-        return 'https://picsum.photos/300/300';
+        return 'imagen';
     }
 
     public function adminlte_desc(){

@@ -19,6 +19,9 @@
         <div class="card card-primary card-outline bg-dark">
           <div class="card-body ">
             @csrf
+            <div class=" d-flex justify-content-between style="width: 18rem;">
+              <img src="{{asset('imagenes/'.Auth::user()->imagen) }}"  class="card-img-top" alt="Profile pict">
+            </div>
             <h3 class="profile-username text-center">{{$user->name}}</h3>
             <p class="text-muted text-center">Software Engineer</p>
             <br>
@@ -71,9 +74,18 @@
             
             <div class="container">
               <h2 class="text-center">Configuracion de la cuenta</h2>
-              <form action="{{ route('user.update', $user->id) }}" method="POST">
+              
+              <form action="{{ route('user.update', $user->id) }}" enctype="multipart/form-data" method="POST">
                 @method('put')
                 @csrf
+               
+               
+                <div class="input-group mb-3">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="imagen" aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">Imagen de perfil</label>
+                  </div>
+                </div>
                 <div class="">
                   <label for="">Nombre completo</label>
                   <input type="text" class="form-control" value="{{$user->name}}" disabled >
