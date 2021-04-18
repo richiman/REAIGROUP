@@ -38,10 +38,12 @@ class User extends Authenticatable
     ];
 
     public function adminlte_image(){
-        return 'imagen';
+        return "Img";
+        
     }
-
-    public function adminlte_desc(){
+   
+    public function  adminlte_desc(){
+        
         return "Inversionista";
     }
 

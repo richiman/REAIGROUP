@@ -46,6 +46,7 @@ Route::get('barlovento', function (){
 });
 
 
+
 //editar Usuario
 
 Route::put('user/{id}', function(Request $request, $id){
@@ -61,7 +62,7 @@ Route::put('user/{id}', function(Request $request, $id){
             $user->imagen = $file->getClientOriginalName();
         }
        $user->save();
-       return redirect('/perfil')->with('info', 'Datos de perfil actualizados correctamente');
+       return redirect('/profile')->with('info', 'Datos de perfil actualizados correctamente');
 })->name('user.update');
 
 
