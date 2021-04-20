@@ -250,10 +250,10 @@ return [
                     'submenu' => [
                         [
                             'text' => 'Desarrollo',
-                            'url'  => 'barlovento',
+                            'url'  => 'barloventoTepic',
                         ],[
                             'text' => 'Invertir',
-                            'url'  => 'invertirBarlo',
+                            'url'  => 'invertirBarloTepic',
                         ],[
                             'text' => 'Pagina web',
                             'url'  => '#',

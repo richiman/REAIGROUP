@@ -1,10 +1,10 @@
+@extends('adminlte::page')
 
-
-<?php $__env->startSection('title', 'Dashboard'); ?>
-<?php $__env->startSection('plugins.Chartjs',true); ?>
-<?php $__env->startSection('plugins.Sweetalert2',true); ?>
-<?php $__env->startSection('plugins.ionicon',true); ?>
-<?php $__env->startSection('content'); ?>
+@section('title', 'Dashboard')
+@section('plugins.Chartjs',true)
+@section('plugins.Sweetalert2',true)
+@section('plugins.ionicon',true)
+@section('content')
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3 col-6">
@@ -235,8 +235,8 @@
   
         </div>
        </div>
-<?php $__env->stopSection(); ?>
-<?php $__env->startSection('js'); ?>  
+@endsection
+@section('js')  
 <script>
     //-------------
     //- BAR CHART -
@@ -314,5 +314,4 @@
 
 </script>
     
-<?php $__env->stopSection(); ?>
-<?php echo $__env->make('adminlte::page', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\PC bre\Desktop\ReaiGroupLaravel\ReaiGroup\resources\views/layouts/desarrollos/barlovento.blade.php ENDPATH**/ ?>
+@endsection

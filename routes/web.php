@@ -35,14 +35,15 @@ Route::get('dashboard', function () {
     $user = Auth::user();
     return view('layouts.dashboard', compact('user'));
 });
-Route::get('invertirBarlo', function () {
-    $user = Auth::user();
-    return view('layouts.desarrollos.invertirBarlo', compact('user'));
-});
 
-Route::get('barlovento', function (){
+
+Route::get('invertirBarloTepic', function () {
     $user = Auth::user();
-    return view ('layouts.desarrollos.barlovento', compact('user'));
+    return view('layouts.desarrollos.invertirBarloTepic', compact('user'));
+});
+Route::get('barloventoTepic', function (){
+    $user = Auth::user();
+    return view ('layouts.desarrollos.barloventoTepic', compact('user'));
 });
 
 
