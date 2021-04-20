@@ -12,8 +12,8 @@
                   <div class="small-box bg-info">
                     <div class="inner"> 
                       
-                      <h3>MXN:</h3>
-                      <p>Capital en pesos.</p>
+                      <h3>MXN: </h3>
+                      <p>Capital invertido en pesos.</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-file-invoice-dollar"></i>

@@ -12,7 +12,7 @@
                   <div class="small-box bg-info">
                     <div class="inner"> 
                       
-                      <h3>{{"$ " . number_format($user->capital, 0, ",", ",")}}.00</h3>
+                      <h3>$ 0.00</h3>
                       <p>Capital invertido</p>
                     </div>
                     <div class="icon">

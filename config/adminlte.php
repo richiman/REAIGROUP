@@ -240,9 +240,13 @@ return [
             'icon'    => 'fas fa-chart-bar',
             'submenu' => [
                 [
-                    'text' => 'Barlovento',
+                    'header' => 'Fraccionamientos Barlovento',
+                ],[
+                    
+                    'text' => 'Barlo Tepic ',
                     'url'  => 'proyectoBarlovento',
                     'icon' => 'far fa-registered',
+                    'label' => "new" ,
                     'submenu' => [
                         [
                             'text' => 'Desarrollo',
@@ -250,6 +254,23 @@ return [
                         ],[
                             'text' => 'Invertir',
                             'url'  => 'invertirBarlo',
+                        ],[
+                            'text' => 'Pagina web',
+                            'url'  => '#',
+                        ],
+                    ]
+                ],[
+                    'text' => 'Barlo Las Varas',
+                    'url'  => 'proyectoBarlovento',
+                    'icon' => 'far fa-registered',
+                    'label' => "new" ,
+                    'submenu' => [
+                        [
+                            'text' => 'Desarrollo ',
+                            'url'  => '#',
+                        ],[
+                            'text' => 'Invertir',
+                            'url'  => '#',
                         ],[
                             'text' => 'Pagina web',
                             'url'  => '#',
