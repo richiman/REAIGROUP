@@ -267,27 +267,26 @@ return [
                     'submenu' => [
                         [
                             'text' => 'Desarrollo ',
-                            'url'  => '#',
+                            'url'  => 'barloventoLasVaras',
                         ],[
                             'text' => 'Invertir',
-                            'url'  => '#',
+                            'url'  => 'invertirBarloLasVaras',
                         ],[
                             'text' => 'Pagina web',
                             'url'  => '#',
                         ],
                     ]
                 ], [
-                    'text' => 'New chacala',
-                    'url'  => 'proyectoMarrial  ',
+                    'text' => 'Barlo New chacala',
                     'icon' => 'far fa-registered',
                     'label' => "new" ,
                     'submenu' => [
                         [
                             'text' => 'Desarrollo',
-                            'url'  => '#',
+                            'url'  => 'NewChacala',
                         ],[
                             'text' => 'Invertir',
-                            'url'  => '#',
+                            'url'  => 'invertirNewChacala',
                         ],[
                             'text' => 'Pagina web',
                             'url'  => '#',

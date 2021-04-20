@@ -39,7 +39,7 @@
                   <div class="small-box bg-warning">
                     <div class="inner">
                       <h3>0</h3>
-                      <p>Tus Proyectos </p>
+                      <p>Proyectos registrados </p>
                     </div>
                     <div class="icon">
                       <i class="fas fa-file-alt"></i>
@@ -51,7 +51,7 @@
                   <!-- small box -->
                   <div class="small-box bg-danger">
                     <div class="inner">
-                      <h3>0</h3>
+                      <h3>{{$count}}</h3>
       
                       <p>Inversionitas registrados</p>
                     </div>
@@ -93,7 +93,7 @@
                         <!-- /.col -->
                         <div class="col-md-4">
                           <p class="text-center">
-                            <strong>Tus proyectos</strong>
+                            <strong>Proyectos con participacion</strong>
                           </p>
       
                           <div class="progress-group">

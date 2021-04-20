@@ -33,10 +33,11 @@ Route::get('profile', function () {
 
 Route::get('dashboard', function () {
     $user = Auth::user();
-    return view('layouts.dashboard', compact('user'));
+    $count = DB::table('users')->count();
+    return view('layouts.dashboard', compact('user','count'));
 });
 
-
+//Rutas BarloTepic
 Route::get('invertirBarloTepic', function () {
     $user = Auth::user();
     return view('layouts.desarrollos.invertirBarloTepic', compact('user'));
@@ -45,11 +46,32 @@ Route::get('barloventoTepic', function (){
     $user = Auth::user();
     return view ('layouts.desarrollos.barloventoTepic', compact('user'));
 });
+//Rutas BarloTepic
 
+//Ruta Barlo Las Varas
+Route::get('barloventoLasVaras', function () {
+    $user = Auth::user();
+    return view('layouts.desarrollos.barloventoLasVaras', compact('user'));
+});
+Route::get('invertirBarloLasVaras', function (){
+    $user = Auth::user();
+    return view ('layouts.desarrollos.invertirBarloLasVaras', compact('user'));
+});
+//Ruta Barlo Las Varas
+
+//Ruta New Chacala
+Route::get('NewChacala', function () {
+    $user = Auth::user();
+    return view('layouts.desarrollos.NewChacala', compact('user'));
+});
+Route::get('invertirNewChacala', function (){
+    $user = Auth::user();
+    return view ('layouts.desarrollos.invertirNewChac', compact('user'));
+});
+//Ruta New Chacala
 
 
 //editar Usuario
-
 Route::put('user/{id}', function(Request $request, $id){
        $user = User::findOrFail($id);
        $user->direccion = $request->input('direccion');
