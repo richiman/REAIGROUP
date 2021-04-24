@@ -16,14 +16,15 @@
        
 
         <!-- Profile Image -->
-        <div class="card card-primary card-outline bg-dark">
-          <div class="card-body ">
+        <div class="card card-primary  card-outline bg-dark">
+          <div class="card-body">
             @csrf
             <div class=" d-flex justify-content-between style="width: 18rem;">
               <img src="{{asset('imagenes/'.Auth::user()->imagen) }}"  class="card-img-top" alt="Profile pict">
             </div>
             <h3 class="profile-username text-center">{{$user->name}}</h3>
-            <p class="text-muted text-center">Software Engineer</p>
+            <p class="text-muted text-center">Capital</p>
+            <h5 class=" text-center">{{"$ " . number_format($user->capital, 0, ",", ",")}}.00</h5>
             <br>
             
            
@@ -36,34 +37,37 @@
           </div>
         </div>
       </div>
-        <div class="col-md-8">
-        <div class="tab-content" id="v-pills-tabContent">
-          <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+        <div class="col-md-8 card card-primary  card-outline bg-dark ">
+        <div class="tab-content  " id="v-pills-tabContent">
+          <div class="tab-pane  fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <br><br><br><br>
             <div class="container text-center">
-            <h3>Fondear a cuenta bancaria</h3>
-            <h6 class="text-muted">Beneficiario<h6>
-              <h4>REAIGROUP</h4>
+            <h3>Fondear </h3>
+            <h6 class="text-mted">Beneficiario<h6>
+              <h4>REAIGROUP S.A.P.I. DE C.V.</h4>
               <br>
-              <h6 class="text-muted">Banco reseptor</h6>
+              <h6 class="text-muted">Banco</h6>
               <h4>BBVA</h4>
               <h6 class="text-muted">Clabe</h6>
               <h4>646180115427950481</h4>
-            <h6>Tu referencia: 415200{{$user->id}}</h6>
+              <h6 class="text-muted">Referencia</h6>
+            <h6>415200{{$user->id}}</h6>
           </div>
           </div>
-          <div class="tab-pane fade" id="v-pills-retirar" role="tabpanel" aria-labelledby="v-pills-retirar-tab">
+          <div class="tab-pane fade  " id="v-pills-retirar" role="tabpanel" aria-labelledby="v-pills-retirar-tab">
+            <br><br><br><br>
             <div class="container text-center">
-              <h3>Retirar a cuenta bancaria</h3>
+              <h3>Retirar </h3>
               <h6 class="text-muted">Tienes: <h6>
                 <h4>{{"$ " . number_format($user->capital, 0, ",", ",")}}.00</h4>
-                <br>
-                <h6 class="text-muted">Monto</h6>
-            
-                <input type="text" class="form-control  col-md-4 mx-auto"  placeholder="100.00">
-         
+                <h6 class="text-muted ">Beneficiario</h6>
+                <h4>{{$user->name}}</h4>
                 <br>
                 <h6 class="text-muted ">Ingresa tu cuenta bancaria</h6>
-                <input type="text" class="form-control  col-md-4 mx-auto"  placeholder="123456">
+                <input type="text" class="form-control  col-md-4 mx-auto"  placeholder="1234-5678-9101-1120">
+                <br>
+                <h6 class="text-muted">Monto</h6>
+                <input type="text" class="form-control  col-md-4 mx-auto"  placeholder="100.00">
                 <br>
                 <button type="button" class="btn btn-secondary">Retirar</button>
                 <br>

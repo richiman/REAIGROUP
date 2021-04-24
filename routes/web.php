@@ -51,24 +51,23 @@ Route::get('invertirBarloTepic', function () {
     return view('layouts.desarrollos.invertirBarloTepic', compact('user'));
     
 });
+
+//invertir Validacion y resta de dinero de la base de datos 100% seguro para operar !!! Validaciones pendientes de aprovacion
 Route::post('invertirBarloTepic', function(Request $request){
     $nuevaInversion = new Inversiones;
     $user = Auth::user();
     if($nuevaInversion-> monto = $request->input('cantidadInvertida') <  $user->capital   ){
 
-    return redirect('/invertirBarloTepic')->with('error', 'No puede invertir esa cantidad.');
-
+    return redirect('/invertirBarloTepic')->with('error', 'No puede ingresar valores inferiores a su capital.');
     }elseif( $nuevaInversion-> monto = $request->input('cantidadInvertida') > $user->capital ){
-        return redirect('/barloventoTepic')->with('error', 'Error inesperado.');
+        return redirect('/barloventoTepic')->with('error', 'No puede ingresar valores superiores a su capital a su capital.');
     }else{
-
         $nuevaInversion-> proyecto = $request->input('proyectoId');
         $nuevaInversion-> userId = $request->input('userId');
         $nuevaInversion-> monto = $request->input('cantidadInvertida');
         $nuevaInversion->save();
         DB::table('users')->where('id',  $user->id )->decrement('capital' , $nuevaInversion-> monto = $request->input('cantidadInvertida'));
         return redirect('/barloventoTepic')->with('info', 'Inversion guardada.');
-       
     }
 })->name('crear.inversion');
 
