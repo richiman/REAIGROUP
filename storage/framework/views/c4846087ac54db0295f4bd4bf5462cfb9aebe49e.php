@@ -12,7 +12,7 @@
                   <div class="small-box bg-info">
                     <div class="inner"> 
                       
-                      <h3>$ 0.00</h3>
+                      <h3><?php echo e("$ " . number_format($capitalInvertido, 0, ",", ",")); ?>.00</h3>
                       <p>Capital invertido en pesos.</p>
                     </div>
                     <div class="icon">
@@ -294,6 +294,7 @@
       
     }
 });*/
+
 
 </script>
     

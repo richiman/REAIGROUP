@@ -79,8 +79,6 @@
               <form action="<?php echo e(route('user.update', $user->id)); ?>" enctype="multipart/form-data" method="POST">
                 <?php echo method_field('put'); ?>
                 <?php echo csrf_field(); ?>
-               
-               
                 <div class="input-group mb-3">
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" name="imagen" aria-describedby="inputGroupFileAddon01">

@@ -3,6 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\User;
 use App\Proyects;
+use App\Inversiones;
+use App\Services\PayUService\Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
+
+
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -30,25 +36,54 @@ Route::get('profile', function () {
     return view('layouts.perfil', compact('user'));
     
 });
-
+    //Rutas Dashboard
 Route::get('dashboard', function () {
     $user = Auth::user();
     $count = DB::table('users')->count();
-    return view('layouts.dashboard', compact('user','count'));
+    $capitalInvertido = DB::table("inversiones")->where('userId',  $user->id)->get()->sum("monto");
+    return view('layouts.dashboard', compact('user','count','capitalInvertido'));
 });
 
-//Rutas BarloTepic
+//Rutas BarloTepic 
+//invertir
 Route::get('invertirBarloTepic', function () {
     $user = Auth::user();
     return view('layouts.desarrollos.invertirBarloTepic', compact('user'));
+    
 });
+Route::post('invertirBarloTepic', function(Request $request){
+    $nuevaInversion = new Inversiones;
+    $user = Auth::user();
+    if($nuevaInversion-> monto = $request->input('cantidadInvertida') <  $user->capital   ){
+
+    return redirect('/invertirBarloTepic')->with('error', 'No puede invertir esa cantidad.');
+
+    }elseif( $nuevaInversion-> monto = $request->input('cantidadInvertida') > $user->capital ){
+        return redirect('/barloventoTepic')->with('error', 'Error inesperado.');
+    }else{
+
+        $nuevaInversion-> proyecto = $request->input('proyectoId');
+        $nuevaInversion-> userId = $request->input('userId');
+        $nuevaInversion-> monto = $request->input('cantidadInvertida');
+        $nuevaInversion->save();
+        DB::table('users')->where('id',  $user->id )->decrement('capital' , $nuevaInversion-> monto = $request->input('cantidadInvertida'));
+        return redirect('/barloventoTepic')->with('info', 'Inversion guardada.');
+       
+    }
+})->name('crear.inversion');
+
+//Dashboard barloventoTepic
 Route::get('barloventoTepic', function (){
     $user = Auth::user();
-    return view ('layouts.desarrollos.barloventoTepic', compact('user'));
+    $capitalInvertidoEnProyecto = DB::table("inversiones")->where('userId',  $user->id )->get()->sum("monto");
+    $invertsInProyect = DB::table("inversiones")->where('proyecto', 1 )->get()->count();
+    return view ('layouts.desarrollos.barloventoTepic', compact('user','capitalInvertidoEnProyecto','invertsInProyect'));
 });
 //Rutas BarloTepic
 
-//Ruta Barlo Las Varas
+
+
+    //Ruta Barlo Las Varas
 Route::get('barloventoLasVaras', function () {
     $user = Auth::user();
     return view('layouts.desarrollos.barloventoLasVaras', compact('user'));
@@ -57,9 +92,9 @@ Route::get('invertirBarloLasVaras', function (){
     $user = Auth::user();
     return view ('layouts.desarrollos.invertirBarloLasVaras', compact('user'));
 });
-//Ruta Barlo Las Varas
+    //Ruta Barlo Las Varas
 
-//Ruta New Chacala
+    //Ruta New Chacala
 Route::get('NewChacala', function () {
     $user = Auth::user();
     return view('layouts.desarrollos.NewChacala', compact('user'));
@@ -68,10 +103,10 @@ Route::get('invertirNewChacala', function (){
     $user = Auth::user();
     return view ('layouts.desarrollos.invertirNewChac', compact('user'));
 });
-//Ruta New Chacala
+    //Ruta New Chacala
 
 
-//editar Usuario
+    //editar Usuario
 Route::put('user/{id}', function(Request $request, $id){
        $user = User::findOrFail($id);
        $user->direccion = $request->input('direccion');

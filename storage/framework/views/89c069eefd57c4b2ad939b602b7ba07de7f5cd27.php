@@ -5,6 +5,7 @@
 <?php $__env->startSection('plugins.Sweetalert2',true); ?>
 <?php $__env->startSection('plugins.ionicon',true); ?>
 <?php $__env->startSection('content'); ?>
+
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3 col-6">
@@ -12,7 +13,7 @@
                   <div class="small-box bg-info">
                     <div class="inner"> 
                       
-                      <h3>$ 0.00</h3>
+                      <h3><?php echo e("$ " . number_format($capitalInvertidoEnProyecto, 0, ",", ",")); ?>.00</h3>
                       <p>Capital invertido</p>
                     </div>
                     <div class="icon">
@@ -51,7 +52,7 @@
                   <!-- small box -->
                   <div class="small-box bg-danger">
                     <div class="inner">
-                      <h3>0</h3>
+                      <h3><?php echo e($invertsInProyect); ?></h3>
       
                       <p>Inversionitas en el proyecto</p>
                     </div>
@@ -311,7 +312,43 @@
     }
 });
 
+<?php if(session('info')): ?>
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+});
+Toast.fire({
+  type: 'success',
+  title: '<?php echo e(session('info')); ?> ' 
+})
 
+<?php endif; ?>
+
+<?php if(session('error')): ?>
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+});
+Toast.fire({
+  type: 'warning',
+  title: '<?php echo e(session('error')); ?> ' 
+})
+
+<?php endif; ?>
 </script>
     
 <?php $__env->stopSection(); ?>

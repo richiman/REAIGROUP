@@ -5,6 +5,7 @@
 @section('plugins.Sweetalert2',true)
 @section('plugins.ionicon',true)
 @section('content')
+
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3 col-6">
@@ -12,7 +13,7 @@
                   <div class="small-box bg-info">
                     <div class="inner"> 
                       
-                      <h3>$ 0.00</h3>
+                      <h3>{{"$ " . number_format($capitalInvertidoEnProyecto, 0, ",", ",")}}.00</h3>
                       <p>Capital invertido</p>
                     </div>
                     <div class="icon">
@@ -51,7 +52,7 @@
                   <!-- small box -->
                   <div class="small-box bg-danger">
                     <div class="inner">
-                      <h3>0</h3>
+                      <h3>{{$invertsInProyect}}</h3>
       
                       <p>Inversionitas en el proyecto</p>
                     </div>
@@ -311,7 +312,43 @@
     }
 });
 
+@if (session('info'))
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+});
+Toast.fire({
+  type: 'success',
+  title: '{{session('info')}} ' 
+})
 
+@endif
+
+@if (session('error'))
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+});
+Toast.fire({
+  type: 'warning',
+  title: '{{session('error')}} ' 
+})
+
+@endif
 </script>
     
 @endsection
