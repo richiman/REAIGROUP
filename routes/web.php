@@ -56,7 +56,7 @@ Route::get('invertirBarloTepic', function () {
 Route::post('invertirBarloTepic', function(Request $request){
     $nuevaInversion = new Inversiones;
     $user = Auth::user();
-    if($nuevaInversion-> monto = $request->input('cantidadInvertida') <=  $user->capital   ){
+    if($nuevaInversion-> monto = $request->input('cantidadInvertida') <  $user->capital   ){
 
     return redirect('/invertirBarloTepic')->with('error', 'No puede ingresar valores inferiores a su capital.');
     }elseif( $nuevaInversion-> monto = $request->input('cantidadInvertida') > $user->capital ){
