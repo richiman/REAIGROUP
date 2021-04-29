@@ -12,7 +12,7 @@ class Inversiones extends Model
      * @var array
      */
     protected $fillable = [
-        'proyecto', 'monto', 'userId'
+        'proyecto','tipoCotrato', 'monto', 'userId'
     ];
 
 

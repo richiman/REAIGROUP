@@ -25,31 +25,31 @@ Route::get('/', function () {
     $user = Auth::user();
     return view('welcome');
 });
-
 Route::get('Proyectos', function () {
     $proyects = Proyects::all();
     return view('layouts.proyectos', compact('proyects'));
 });
-
 Route::get('profile', function () {
     $user = Auth::user();
-    return view('layouts.perfil', compact('user'));
-    
+    $historial = DB::table("inversiones")->where('userId',  $user->id )->get();
+    return view('layouts.perfil', compact('user','historial'));
 });
     //Rutas Dashboard
 Route::get('dashboard', function () {
     $user = Auth::user();
     $count = DB::table('users')->count();
     $capitalInvertido = DB::table("inversiones")->where('userId',  $user->id)->get()->sum("monto");
-    return view('layouts.dashboard', compact('user','count','capitalInvertido'));
+    $proyectosRegistrados = DB::table("inversiones")->where('userId',  $user->id)->get()->count();
+    $proyectosRegistradosList = Inversiones::all()->where('userId',  $user->id);
+    return view('layouts.dashboard', compact('user','count','capitalInvertido', 'proyectosRegistrados','proyectosRegistradosList'));
 });
 
 //Rutas BarloTepic 
 //invertir
 Route::get('invertirBarloTepic', function () {
     $user = Auth::user();
-    return view('layouts.desarrollos.invertirBarloTepic', compact('user'));
-    
+    $historial = DB::table("inversiones")->where('userId',  $user->id )->get();
+    return view('layouts.desarrollos.invertirBarloTepic', compact('user','historial'));
 });
 
 //invertir Validacion y resta de dinero de la base de datos 100% seguro para operar !!! Validaciones pendientes de aprovacion
@@ -64,6 +64,7 @@ Route::post('invertirBarloTepic', function(Request $request){
         return redirect('/barloventoTepic')->with('error', 'No puede ingresar valores superiores a su capital a su capital.');
     }else{
         $nuevaInversion-> proyecto = $request->input('proyectoId');
+        $nuevaInversion-> tipoCotrato = $request->input('tipoCotrato');
         $nuevaInversion-> userId = $request->input('userId');
         $nuevaInversion-> monto = $request->input('cantidadInvertida');
         $nuevaInversion->save();
@@ -71,7 +72,6 @@ Route::post('invertirBarloTepic', function(Request $request){
         return redirect('/barloventoTepic')->with('info', 'Inversion guardada.');
     }
 })->name('crear.inversion');
-
 //Dashboard barloventoTepic
 Route::get('barloventoTepic', function (){
     $user = Auth::user();
@@ -80,20 +80,36 @@ Route::get('barloventoTepic', function (){
     return view ('layouts.desarrollos.barloventoTepic', compact('user','capitalInvertidoEnProyecto','invertsInProyect'));
 });
 //Rutas BarloTepic
-
-
-
-    //Ruta Barlo Las Varas
+//Ruta Barlo Las Varas
 Route::get('barloventoLasVaras', function () {
     $user = Auth::user();
     return view('layouts.desarrollos.barloventoLasVaras', compact('user'));
 });
 Route::get('invertirBarloLasVaras', function (){
+    
     $user = Auth::user();
     return view ('layouts.desarrollos.invertirBarloLasVaras', compact('user'));
 });
-    //Ruta Barlo Las Varas
+Route::post('invertirBarloLasVaras', function(Request $request){
+    $nuevaInversion = new Inversiones;
+    $user = Auth::user();
+    if($nuevaInversion-> monto = $request->input('cantidadInvertida') <  500000 || $user->capital < 1  ){
 
+    return redirect('/barloventoLasVaras')->with('error', 'No puede ingresar valores inferiores al valor de la accion o su capital.');
+
+    }elseif( $nuevaInversion-> monto = $request->input('cantidadInvertida') > $user->capital ){
+        return redirect('/barloventoLasVaras')->with('error', 'No puede ingresar valores superiores a su capital a su capital.');
+    }else{
+        $nuevaInversion-> proyecto = $request->input('proyectoId');
+        $nuevaInversion-> tipoCotrato = $request->input('tipoCotrato');
+        $nuevaInversion-> userId = $request->input('userId');
+        $nuevaInversion-> monto = $request->input('cantidadInvertida');
+        $nuevaInversion->save();
+        DB::table('users')->where('id',  $user->id )->decrement('capital' , $nuevaInversion-> monto = $request->input('cantidadInvertida'));
+        return redirect('/barloventoLasVaras')->with('info', 'Inversion guardada.');
+    }
+})->name('crear.inversion2');
+    //Ruta Barlo Las Varas
     //Ruta New Chacala
 Route::get('NewChacala', function () {
     $user = Auth::user();

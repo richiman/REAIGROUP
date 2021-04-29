@@ -17,6 +17,7 @@ class AddInversionesTable extends Migration
         Schema::create('inversiones', function (Blueprint $table) {
             $table->id();
             $table->string('proyecto');
+            $table->string('tipoCotrato');
             $table->string('monto');
             $table->string('userId');
             $table->timestamps();

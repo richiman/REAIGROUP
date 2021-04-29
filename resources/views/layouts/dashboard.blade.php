@@ -38,7 +38,7 @@
                   <!-- small box -->
                   <div class="small-box bg-warning">
                     <div class="inner">
-                      <h3>0</h3>
+                      <h3>3</h3>
                       <p>Proyectos registrados </p>
                     </div>
                     <div class="icon">
@@ -93,17 +93,26 @@
                         <!-- /.col -->
                         <div class="col-md-4">
                           <p class="text-center">
-                            <strong>Proyectos con participacion</strong>
+                            <strong>Proyectos con participacion {{$proyectosRegistrados}}</strong>
                           </p>
-      
+                        <!-- /.progress-group -->
+                          @foreach ($proyectosRegistradosList as $item)
                           <div class="progress-group">
-                            Sin proyectos 
+                           @if($item->proyecto =='1')         
+                              Barlovento tepic
+                          @elseif($item->proyecto =='2') 
+                              Barlovento Las varas
+                          @elseif($item->proyecto =='3') 
+                              Barlovento Chacala
+                          @endif
                             <span class="float-right"><b>0</b>/100</span>
                             <div class="progress progress-sm">
                               <div class="progress-bar bg-primary" style="width: 0%"></div>
                             </div>
                           </div>
-                          <!-- /.progress-group -->
+                          @endforeach
+
+                      
       
                           
                           <!-- /.progress-group -->
@@ -119,7 +128,7 @@
                           <div class="description-block border-right ">
                             <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 0%</span>
                             <h5 class="description-header">$0.00</h5>
-                            <span class="description-text">INGRESOS TOTALES</span>
+                            <span class="description-text">VENTAS TOTALES</span>
                           </div>
                           <!-- /.description-block -->
                         </div>
@@ -128,7 +137,7 @@
                           <div class="description-block border-right">
                             <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 0%</span>
                             <h5 class="description-header">$0.00</h5>
-                            <span class="description-text">COSTO TOTAL </span>
+                            <span class="description-text">CAPITAL TOTAL </span>
                           </div>
                           <!-- /.description-block -->
                         </div>
@@ -146,7 +155,8 @@
                           <div class="description-block">
                             <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 0%</span>
                             <h5 class="description-header">0</h5>
-                            <span class="description-text">CUMPLIMIENTO DE OBJETIVOS</span>
+                            <span class="description-text">UTILIDADES
+                            </span>
                           </div>
                           <!-- /.description-block -->
                         </div>
@@ -161,13 +171,12 @@
               </div>
               <div class="row">
            <!-- Left col -->
-            <section class="col-lg-6 connectedSortable ui-sortable">
+            <section class="col-lg-8  ">
 
 
                 <div class="card bg-dark">
                     <div class="card-header">
                       <h3 class="card-title">Acciones</h3>
-      
                       <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                           <i class="fas fa-minus"></i>
@@ -190,7 +199,18 @@
                         <div class="col-md-4 ">
                           <ul class="chart-legend clearfix">
                             <li>
-                              <i class="far fa-circle text-danger"></i> Invierte para ver datos
+                              @foreach ($proyectosRegistradosList as $item)
+                              <div class="progress-group">
+                               @if($item->proyecto =='1')         
+                               <i class="far fa-circle text-success"></i>Barlovento tepic
+                              @elseif($item->proyecto =='2') 
+                              <i class="far fa-circle text-success"></i>Barlovento Las varas
+                              @elseif($item->proyecto =='3') 
+                              <i class="far fa-circle text-success"></i>Barlovento Chacala
+                              @else
+                              Invierte para ver datos
+                              @endif
+                              @endforeach
                             </li>
                           </ul>
                         </div>
@@ -203,7 +223,6 @@
                       <table class="table bg-dark">
                         <thead>
                           <tr>
-                           
                             <th class="text-center" scope="col">Proyecto</th>
                             <th class="text-center" scope="col">Inversion</th>
                             <th class="text-center" scope="col">Participacion</th>
@@ -211,33 +230,38 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td class="text-center">Sin proyectos</td>
-                            <td class="text-center text-success">0.00</td>
-                            <td class="text-center text-success">0%</td>
+                           @foreach ($proyectosRegistradosList as $item)
+                            @if($item->proyecto =='1')         
+                            <td class="text-center"> Barlovento tepic</td>   
+                            <td class="text-center text-success">{{"$ " . number_format($item->monto, 0, ",", ",")}}.00</td>
+                            <td class="text-center text-success">10%</td>
                           </tr>
-                         
+                           @elseif($item->proyecto =='2') 
+                           <td class="text-center"> Barlovento Las varas</td>   
+                           <td class="text-center text-success">{{"$ " . number_format($item->monto, 0, ",", ",")}}.00</td>
+                           <td class="text-center text-success">10%</td>
+                          </tr>
+                           @elseif($item->proyecto =='3') 
+                            <td class="text-center">  Barlovento Chacala</td>  
+                            <td class="text-center text-success">{{"$ " . number_format($item->monto, 0, ",", ",")}}.00</td>
+                            <td class="text-center text-success">10%</td>
+                          </tr>
+                           @endif
+                           @endforeach
                         </tbody>
                       </table>
                     </div>
-                    <!-- /.footer -->
                   </div>
-                  
-           
-
-          <!-- Calendar -->
-        
-            
           </section>
-          
         </div>
        </div>
 @endsection
 @section('js')  
 <script>
     
-//-------------
+     //--------------
     //- line CHART -
-    //-------------
+   //--------------
     var ctx = document.getElementById('barChart2').getContext('2d');
     var myChart = new Chart(ctx, {
     type: 'line',
@@ -271,18 +295,19 @@
         }
     }
 });
-
     //-------------
     //- radial CHART -
     //-------------
-  /*  var ctx = document.getElementById('pieChart').getContext('2d');
+  var ctx = document.getElementById('pieChart').getContext('2d');
     var myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: ['Barlovento', 'Nuevo Chacala' ],
+        labels: ["
+          Barlovento Tepic,  Barlovento las Varas, Barlovento Chacala"
+        ],
         datasets: [{
             label: '# Proyectos',
-            data: [0, 0,],
+            data: [1, 4,],
             backgroundColor: [
                 'rgba(255, 162, 35, 0.5)',
                 'rgba(54, 162, 235, 0.5)',   
@@ -291,11 +316,8 @@
         }]
     },
     options: {
-      
     }
-});*/
-
-
+});
 </script>
-    
 @endsection
+

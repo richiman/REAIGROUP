@@ -32,6 +32,7 @@
               <div class="nav flex-column  " id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link  nav-link navbar-dark bg-dark active  " id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Fondear</a>
                 <a class="nav-link nav-link navbar-dark bg-dark" id="v-pills-retirar-tab" data-toggle="pill" href="#v-pills-retirar" role="tab" aria-controls="v-pills-retirar" aria-selected="false">Retirar</a>
+                <a class="nav-link nav-link navbar-dark bg-dark" id="v-pills-historial-tab" data-toggle="pill" href="#v-pills-historial" role="tab" aria-controls="v-pills-historial" aria-selected="false">Historial</a>
                 <a class="nav-link nav-link navbar-dark bg-dark" id="v-pills-config-tab" data-toggle="pill" href="#v-pills-config" role="tab" aria-controls="v-pills-config" aria-selected="false">Configuracion</a>
               </div>
               
@@ -72,6 +73,45 @@
                 <br>
                 <button type="button" class="btn btn-secondary">Retirar</button>
                 <br>
+            </div>
+            <br> 
+          </div>
+          <div class="tab-pane fade  " id="v-pills-historial" role="tabpanel" aria-labelledby="v-pills-historial-tab">
+            <br><br><br><br>
+            <div class="container text-center">
+              <h3>Historial de inversiones </h3>
+              <table class="table table-hover rounded bg-dark">
+                <thead>
+                  <tr>
+                    <th class="text-center" scope="col text-center">Proyecto</th>
+                    <th class="text-center" scope="col text-center">Tipo de contrato</th>
+                    <th class="text-center" scope="col text-center">Cantidad</th>
+                    <th class="text-center" scope="col text-center">Fecha de inversion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $__currentLoopData = $historial; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <tr>
+                    <?php if($item->proyecto =='1'): ?>         
+                    <td class="text-center">Barlovento tepic</td>
+                    <?php elseif($item->proyecto =='2'): ?> 
+                    <td class="text-center">Barlovento las varas</td>
+                    <?php elseif($item->proyecto =='3'): ?> 
+                    <td class="text-center">Barlovento nuevo chacala</td>
+                    <?php endif; ?>
+                     <?php if($item->tipoCotrato =='1'): ?>         
+                     <td class="text-center">Ventas</td>
+                     <?php elseif($item->tipoCotrato =='2'): ?> 
+                     <td class="text-center">Porcentaje</td>
+                     <?php endif; ?>
+                    <td class="text-center"><?php echo e("$ " . number_format($item->monto, 0, ",", ",")); ?>.00</td>
+                    <td class="text-center"><?php echo e(date('d-m-Y', strtotime($item->created_at))); ?></td>
+                  
+                  </tr>
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                 
+                </tbody>
+              </table>
             </div>
             <br> 
           </div>
