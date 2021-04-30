@@ -73,33 +73,33 @@
       </div>
       <div class="container bg-dark rounded">
         <h5 class="text-center">Historial de inversiones</h5>
-      <table class="table table-hover rounded bg-dark">
+      <table class="table table-hover rounded bg-dark table-responsive-sm">
         <thead>
           <tr>
             <th class="text-center" scope="col text-center">Proyecto</th>
-            <th class="text-center" scope="col text-center">Tipo de contrato</th>
+            <th class="text-center" scope="col text-center">Contrato</th>
             <th class="text-center" scope="col text-center">Cantidad</th>
-            <th class="text-center" scope="col text-center">Fecha de inversion</th>
+            <th class="text-center" scope="col text-center">Fecha</th>
           </tr>
         </thead>
         <tbody>
           @foreach ($historial as $item)
           <tr>
             @if($item->proyecto =='1')         
-            <td class="text-center">Barlovento tepic</td>
+            <td class="text-center">Barlo tepic</td>
             @elseif($item->proyecto =='2') 
-            <td class="text-center">Barlovento las varas</td>
+            <td class="text-center">Barlo las varas</td>
             @elseif($item->proyecto =='3') 
-            <td class="text-center">Barlovento nuevo chacala</td>
+            <td class="text-center">Barlo nuevo chacala</td>
             @endif
              @if($item->tipoCotrato =='1')         
              <td class="text-center">Ventas</td>
              @elseif($item->tipoCotrato =='2') 
              <td class="text-center">Porcentaje</td>
              @endif
-            <td class="text-center">{{"$ " . number_format($item->monto, 0, ",", ",")}}.00</td>
-            <td class="text-center">{{  date('d-m-Y', strtotime($item->created_at))}}</td>
-          
+            <td class="text-center"><small>{{"$" . number_format($item->monto, 0, ",",",")}}.00</small></td>
+            <td class="text-center"><small>{{date('d-m-Y',strtotime($item->created_at))}}</small></td>
+            
           </tr>
           @endforeach
          

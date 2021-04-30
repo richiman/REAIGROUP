@@ -23,7 +23,7 @@ use Illuminate\Http\Request;
 
 Route::get('/', function () {
     $user = Auth::user();
-    return view('welcome');
+    return view('auth.login' );
 });
 Route::get('Proyectos', function () {
     $proyects = Proyects::all();
@@ -76,7 +76,7 @@ Route::post('invertirBarloTepic', function(Request $request){
 Route::get('barloventoTepic', function (){
     $user = Auth::user();
     $capitalInvertidoEnProyecto = DB::table("inversiones")->where('userId',  $user->id )->get()->sum("monto");
-    $invertsInProyect = DB::table("inversiones")->where('proyecto', 1 )->get()->count();
+    $invertsInProyect = DB::table('inversiones')->distinct('userId')->count('userId');
     return view ('layouts.desarrollos.barloventoTepic', compact('user','capitalInvertidoEnProyecto','invertsInProyect'));
 });
 //Rutas BarloTepic
