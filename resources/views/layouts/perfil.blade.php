@@ -25,11 +25,7 @@
             <h3 class="profile-username text-center">{{$user->name}}</h3>
             <p class="text-muted text-center">Capital</p>
             <h5 class=" text-center">{{"$ " . number_format($user->capital, 0, ",", ",")}}.00</h5>
-            <p class="text-muted text-center">Capital en invertido</p>
-            <h5 class=" text-center">{{"$ " . number_format($capitalInvertido, 0, ",", ",")}}.00</h5>
             <br>
-            
-           
               <div class="nav flex-column  " id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link  nav-link navbar-dark bg-dark active  " id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Fondear</a>
                 <a class="nav-link nav-link navbar-dark bg-dark" id="v-pills-retirar-tab" data-toggle="pill" href="#v-pills-retirar" role="tab" aria-controls="v-pills-retirar" aria-selected="false">Retirar</a>

@@ -4,16 +4,16 @@
 <?php $__env->startSection('plugins.Chartjs',true); ?>
 <?php $__env->startSection('plugins.Sweetalert2',true); ?>
 <?php $__env->startSection('plugins.ionicon',true); ?>
+
 <?php $__env->startSection('content'); ?>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3 col-6">
                   <!-- small box -->
                   <div class="small-box bg-info">
-                    <div class="inner"> 
-                      
-                      <h3><?php echo e("$ " . number_format($capitalInvertido, 0, ",", ",")); ?>.00</h3>
-                      <p>Capital invertido en pesos.</p>
+                    <div class="inner "> 
+                      <h3 class="cabeza" ><?php echo e("$" . number_format($capitalInvertido, 0, ",", ",")); ?></h3>
+                      <p>Capital invertido</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-file-invoice-dollar"></i>
@@ -318,8 +318,10 @@
     options: {
     }
 });
+
 </script>
 <?php $__env->stopSection(); ?>
+
 
 
 <?php echo $__env->make('adminlte::page', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\PC bre\Desktop\ReaiGroupLaravel\ReaiGroup\resources\views/layouts/dashboard.blade.php ENDPATH**/ ?>

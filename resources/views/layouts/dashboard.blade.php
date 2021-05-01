@@ -4,16 +4,16 @@
 @section('plugins.Chartjs',true)
 @section('plugins.Sweetalert2',true)
 @section('plugins.ionicon',true)
+
 @section('content')
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3 col-6">
                   <!-- small box -->
                   <div class="small-box bg-info">
-                    <div class="inner"> 
-                      
-                      <h3>{{"$ " . number_format($capitalInvertido, 0, ",", ",")}}.00</h3>
-                      <p>Capital invertido en pesos.</p>
+                    <div class="inner "> 
+                      <h3 class="cabeza" >{{"$" . number_format($capitalInvertido, 0, ",", ",")}}</h3>
+                      <p>Capital invertido</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-file-invoice-dollar"></i>
@@ -318,6 +318,8 @@
     options: {
     }
 });
+
 </script>
 @endsection
+
 
