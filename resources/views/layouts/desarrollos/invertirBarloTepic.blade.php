@@ -36,7 +36,7 @@
                   <input type="text" name="proyectoId" value="1" style="display: none;">
                   <input type="text" name="tipoCotrato" value="1" style="display: none;">
                     <div class="form-group mx-sm-2 mb-2">
-                      <input type="text" class="form-control" name="cantidadInvertida"  placeholder="cantidad" required>
+                      <input type="number" class="form-control" name="cantidadInvertida"  placeholder="Multiplos de 500,000.00" required>
                     </div>
                     <input type="currency" min="500000" step="any" name="userId" value="{{$user->id}}" style="display: none;">
                     <button type="submit" class="btn btn-primary mb-2">Invertir</button>
@@ -61,7 +61,7 @@
                   <input type="text" name="proyectoId" value="1" style="display: none;">
                   <input type="text" name="tipoCotrato" value="2" style="display: none;">
                     <div class="form-group mx-sm-2 mb-2">
-                      <input type="text" class="form-control" name="cantidadInvertida"  placeholder="cantidad" required>
+                      <input type="text" class="form-control" name="cantidadInvertida"  placeholder="Multiplos de 500,000.00" required>
                     </div>
                     <input type="currency" min="500000" step="any" name="userId" value="{{$user->id}}" style="display: none;">
                     <button type="submit" class="btn btn-primary mb-2">Invertir</button>
@@ -121,7 +121,7 @@
 @endsection
 @section('js')  
 <script>
-
+number_format($data, 2, ',', '.');
 @if (session('info'))
 const Toast = Swal.mixin({
   toast: true,

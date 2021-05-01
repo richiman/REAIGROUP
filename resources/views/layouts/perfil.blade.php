@@ -25,6 +25,8 @@
             <h3 class="profile-username text-center">{{$user->name}}</h3>
             <p class="text-muted text-center">Capital</p>
             <h5 class=" text-center">{{"$ " . number_format($user->capital, 0, ",", ",")}}.00</h5>
+            <p class="text-muted text-center">Capital en invertido</p>
+            <h5 class=" text-center">{{"$ " . number_format($capitalInvertido, 0, ",", ",")}}.00</h5>
             <br>
             
            
@@ -59,8 +61,8 @@
             <br><br><br><br>
             <div class="container text-center">
               <h3>Retirar </h3>
-              <h6 class="text-muted">Tienes: <h6>
-                <h4>{{"$ " . number_format($user->capital, 0, ",", ",")}}.00</h4>
+              <h6 class="text-muted">Disponible para retirar: <h6>
+                <h4 class="text-success">{{"$ " . number_format($user->capital, 0, ",", ",")}}.00</h4>
                 <h6 class="text-muted ">Beneficiario</h6>
                 <h4>{{$user->name}}</h4>
                 <br>

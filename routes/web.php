@@ -32,9 +32,10 @@ Route::get('Proyectos', function () {
 Route::get('profile', function () {
     $user = Auth::user();
     $historial = DB::table("inversiones")->where('userId',  $user->id )->get();
-    return view('layouts.perfil', compact('user','historial'));
+    $capitalInvertido = DB::table("inversiones")->where('userId',  $user->id)->get()->sum("monto");
+    return view('layouts.perfil', compact('user','historial','capitalInvertido'));
 });
-    //Rutas Dashboard
+//------------------------------------------------------------Dashboard------------------------------------------------------------
 Route::get('dashboard', function () {
     $user = Auth::user();
     $count = DB::table('users')->count();
@@ -43,8 +44,7 @@ Route::get('dashboard', function () {
     $proyectosRegistradosList = Inversiones::all()->where('userId',  $user->id);
     return view('layouts.dashboard', compact('user','count','capitalInvertido', 'proyectosRegistrados','proyectosRegistradosList'));
 });
-
-//Rutas BarloTepic 
+//------------------------------------------------------------Rutas BarloTepic------------------------------------------------------------
 //invertir
 Route::get('invertirBarloTepic', function () {
     $user = Auth::user();
@@ -52,7 +52,7 @@ Route::get('invertirBarloTepic', function () {
     return view('layouts.desarrollos.invertirBarloTepic', compact('user','historial'));
 });
 
-//invertir Validacion y resta de dinero de la base de datos 100% seguro para operar !!! Validaciones pendientes de aprovacion
+//invertir
 Route::post('invertirBarloTepic', function(Request $request){
     $nuevaInversion = new Inversiones;
     $user = Auth::user();
@@ -75,21 +75,35 @@ Route::post('invertirBarloTepic', function(Request $request){
 //Dashboard barloventoTepic
 Route::get('barloventoTepic', function (){
     $user = Auth::user();
-    $capitalInvertidoEnProyecto = DB::table("inversiones")->where('userId',  $user->id )->get()->sum("monto");
-    $invertsInProyect = DB::table('inversiones')->distinct('userId')->count('userId');
+    $capitalInvertidoEnProyecto = DB::table("inversiones")
+    ->where('userId',  $user->id )
+    ->where( 'proyecto' , 1 )->get()->sum("monto");
+    $invertsInProyect = DB::table('inversiones')
+    ->where( 'proyecto' , 1 )
+    ->distinct('userId')->count('userId');
     return view ('layouts.desarrollos.barloventoTepic', compact('user','capitalInvertidoEnProyecto','invertsInProyect'));
 });
-//Rutas BarloTepic
-//Ruta Barlo Las Varas
+//-------------------------------------------------------- BarloTepic ------------------------------------------------------------------
+
+//-------------------------------------------------------- Barlo Las Varas -------------------------------------------------------------
+//Dashboard barloventoLasVaras
 Route::get('barloventoLasVaras', function () {
     $user = Auth::user();
-    return view('layouts.desarrollos.barloventoLasVaras', compact('user'));
+    $capitalInvertidoEnProyecto = DB::table("inversiones")
+    ->where('userId',  $user->id )
+    ->where( 'proyecto' , 2 )->get()->sum("monto");
+    $invertsInProyect = DB::table('inversiones')
+    ->where( 'proyecto' , 2 )
+    ->distinct('userId')->count('userId');
+    return view('layouts.desarrollos.barloventoLasVaras', compact('user','capitalInvertidoEnProyecto','invertsInProyect'));
 });
+//invertir
 Route::get('invertirBarloLasVaras', function (){
-    
     $user = Auth::user();
-    return view ('layouts.desarrollos.invertirBarloLasVaras', compact('user'));
+    $historial = DB::table("inversiones")->where('userId',  $user->id )->get();
+    return view ('layouts.desarrollos.invertirBarloLasVaras', compact('user','historial'));
 });
+//invertir
 Route::post('invertirBarloLasVaras', function(Request $request){
     $nuevaInversion = new Inversiones;
     $user = Auth::user();
@@ -109,20 +123,49 @@ Route::post('invertirBarloLasVaras', function(Request $request){
         return redirect('/barloventoLasVaras')->with('info', 'Inversion guardada.');
     }
 })->name('crear.inversion2');
-    //Ruta Barlo Las Varas
-    //Ruta New Chacala
+//-------------------------------------------------------Barlo Las Varas----------------------------------------------------------------------------
+
+
+//-------------------------------------------------------New Chacala--------------------------------------------------------------------------------
 Route::get('NewChacala', function () {
     $user = Auth::user();
-    return view('layouts.desarrollos.NewChacala', compact('user'));
+    $capitalInvertidoEnProyecto = DB::table("inversiones")
+    ->where('userId',  $user->id )
+    ->where( 'proyecto' , 3 )->get()->sum("monto");
+    $invertsInProyect = DB::table('inversiones')
+    ->where( 'proyecto' , 3 )
+    ->distinct('userId')->count('userId');
+    return view('layouts.desarrollos.NewChacala', compact('user','capitalInvertidoEnProyecto','invertsInProyect'));
 });
+//Invertir
+Route::post('invertirNewChacala', function(Request $request){
+    $nuevaInversion = new Inversiones;
+    $user = Auth::user();
+    if($nuevaInversion-> monto = $request->input('cantidadInvertida') <  500000 || $user->capital < 1  ){
+
+    return redirect('/NewChacala')->with('error', 'No puede ingresar valores inferiores al valor de la accion o su capital.');
+
+    }elseif( $nuevaInversion-> monto = $request->input('cantidadInvertida') > $user->capital ){
+        return redirect('/NewChacala')->with('error', 'No puede ingresar valores superiores a su capital a su capital.');
+    }else{
+        $nuevaInversion-> proyecto = $request->input('proyectoId');
+        $nuevaInversion-> tipoCotrato = $request->input('tipoCotrato');
+        $nuevaInversion-> userId = $request->input('userId');
+        $nuevaInversion-> monto = $request->input('cantidadInvertida');
+        $nuevaInversion->save();
+        DB::table('users')->where('id',  $user->id )->decrement('capital' , $nuevaInversion-> monto = $request->input('cantidadInvertida'));
+        return redirect('/NewChacala')->with('info', 'Inversion guardada.');
+    }
+})->name('crear.inversion3');
 Route::get('invertirNewChacala', function (){
     $user = Auth::user();
-    return view ('layouts.desarrollos.invertirNewChac', compact('user'));
+    $historial = DB::table("inversiones")->where('userId',  $user->id )->get();
+    return view ('layouts.desarrollos.invertirNewChac', compact('user','historial'));
 });
-    //Ruta New Chacala
+//-------------------------------------------------------New Chacala--------------------------------------------------------------------------------
 
 
-    //editar Usuario
+//-------------------------------------------------------editar Usuario-----------------------------------------------------------------------------
 Route::put('user/{id}', function(Request $request, $id){
        $user = User::findOrFail($id);
        $user->direccion = $request->input('direccion');
@@ -139,7 +182,7 @@ Route::put('user/{id}', function(Request $request, $id){
        return redirect('/profile')->with('info', 'Datos de perfil actualizados correctamente');
 })->name('user.update');
 
-
+//-------------------------------------------------------editar Usuario-----------------------------------------------------------------------------
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('layouts.dashboard');
