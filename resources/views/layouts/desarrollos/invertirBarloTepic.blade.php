@@ -14,62 +14,46 @@
      <br>
     </div>
     <h4>Capital: {{"$ " . number_format($user->capital, 0, ",", ",")}}.00</h4>
+    <h4>Inversion total: {{"$ " . number_format($porcProyecto, 0, ",", ",")}}.00</h4>
     <br>
   </div>
 
 
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6 text-center">
           <div class="card bg-dark">
             <div class="card-body">
-              <h5 class="card-title">Contrato tipo 1</h5>
-              <p class="card-text">
-                  <h3>Ventas</h3>
-                </p>
-                <p class="text-muted">
-                  Costo por accion $ 500,000.00 MXN
-                </p>
-                <br>
+              <h5 class="card-title">Comprar acciones </h5>
+              <p class="card-text"> <h3>Ventas</h3> </p>
+                <p class="text-muted">  Costo por accion $ 750,000.00 MXN </p>
                 <form class="form-inline d-flex justify-content-center " action="{{ route('crear.inversion') }}"  method="POST">
                   @method('post')
                   @csrf
                   <input type="text" name="proyectoId" value="1" style="display: none;">
                   <input type="text" name="tipoCotrato" value="1" style="display: none;">
                     <div class="form-group mx-sm-2 mb-2">
-                      <input type="number" class="form-control" name="cantidadInvertida"  placeholder="Multiplos de 500,000.00" required>
-                    </div>
-                    <input type="currency" min="500000" step="any" name="userId" value="{{$user->id}}" style="display: none;">
-                    <button type="submit" class="btn btn-primary mb-2">Invertir</button>
+                      @if ($porcProyecto >= 7500000)
+                      <h6 class="text-success" >Lo sentimos ya no existen acciones   disponibles para este proyecto. </h6>
+                      </div>
+                      @else
+                      <input type="number" class="form-control" name="cantidadInvertida"  placeholder="Multiplos de 750,000.00" required>
+                      </div>
+                      <input type="currency" min="750000" step="any" name="userId" value="{{$user->id}}" style="display: none;">
+                      <button type="submit" class="btn btn-primary mb-2" >Invertir</button>
+                      @endif
                  </form>
+                 <br><br><br><br>
             </div>
           </div>
         </div>
         <div class="col-sm-6">
-          <div class="card bg-dark">
-            <div class="card-body">
-              <h5 class="card-title">Contrato tipo 2</h5>
-              <p class="card-text">
-                  <h3>Porcentaje</h3>
-                </p>
-                <p class="text-muted">
-                  Costo por accion $ 500,000.00 MXN
-                </p>
-                <br>
-                <form class="form-inline d-flex justify-content-center " action="{{ route('crear.inversion') }}"  method="POST">
-                  @method('post')
-                  @csrf
-                  <input type="text" name="proyectoId" value="1" style="display: none;">
-                  <input type="text" name="tipoCotrato" value="2" style="display: none;">
-                    <div class="form-group mx-sm-2 mb-2">
-                      <input type="text" class="form-control" name="cantidadInvertida"  placeholder="Multiplos de 500,000.00" required>
-                    </div>
-                    <input type="currency" min="500000" step="any" name="userId" value="{{$user->id}}" style="display: none;">
-                    <button type="submit" class="btn btn-primary mb-2">Invertir</button>
-                 </form>
-            </div>
+            <div class="card bg-dark">
+              <div class="card-body">
+               <h6 class="text-center">Disponibles | No disponibles</h6> 
+            <canvas id="barChart2"  ></canvas>
           </div>
         </div>
-        
+        </div>
       </div>
       <div class="container bg-dark rounded">
         <h5 class="text-center">Historial de inversiones</h5>
@@ -107,21 +91,31 @@
       </table>
     </div>
 </div>
-
-
-    
-
-
-
-
-
-
-
-
 @endsection
 @section('js')  
 <script>
-number_format($data, 2, ',', '.');
+    //--------------
+    //- line CHART -
+   //--------------
+   var ctx = document.getElementById('barChart2').getContext('2d');
+    var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Disponible', 'Comprado'],
+        datasets: [{
+            label: 'Acciones disponibles ',
+            data: [{{$disponibleTepic}},{{$porcProyecto}}],
+            backgroundColor: [
+                'rgba(128, 255, 128, 0.75)',
+                'rgba(255, 92, 51, 0.75)',
+            ],
+          borderWidth: 1
+        }]
+    }, options:{
+      responsive: true
+    },
+});
+
 @if (session('info'))
 const Toast = Swal.mixin({
   toast: true,

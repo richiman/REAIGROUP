@@ -236,7 +236,7 @@
         labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
         datasets: [{
             label: 'Inversion',
-            data: [{{$ene}}, {{$feb}},{{$mar}}, {{$abr}},{{$may}}, {{$jun}},{{$jul}},{{$ago}},{{$sep}},{{$oct}},{{$nov}},{{$dec}}
+            data: [}
             ],
             backgroundColor: [
                 'rgba(54, 162, 235, 0.5)',
@@ -295,6 +295,7 @@
         }
     }
 });
+
 
 @if (session('info'))
 const Toast = Swal.mixin({

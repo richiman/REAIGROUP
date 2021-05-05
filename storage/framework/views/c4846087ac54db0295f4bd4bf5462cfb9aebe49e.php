@@ -52,13 +52,11 @@
                   <div class="small-box bg-danger">
                     <div class="inner">
                       <h3><?php echo e($count); ?></h3>
-      
                       <p>Inversionitas registrados</p>
                     </div>
                     <div class="icon">
                       <i class="fas fa-users"></i>
                     </div>
-                 
                   </div>
                 </div>
                 <!-- ./col -->
@@ -67,7 +65,7 @@
                 <div class="col-md-12">
                   <div class="card bg-dark">
                     <div class="card-header">
-                      <h5 class="card-title">General | inversiones</h5>
+                      <h5 class="card-title">General</h5>
       
                       <div class="card-tools ">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -84,9 +82,21 @@
                       <div class="row">
                         <div class="col-md-8">
                           
-                          <div class="chart"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                          <div class="chart">
+                            <div class="chartjs-size-monitor">
+                              <div class="chartjs-size-monitor-expand">
+                                <div class="">
+                                  </div>
+                                </div>
+                                <div class="chartjs-size-monitor-shrink">
+                                  <div class="">
+                                    </div>
+                                  </div>
+                                </div>
                             <!-- Sales Chart Canvas -->
-                            <canvas id="barChart2" height="198" style="height: 180px; display: block; width: 550px;" width="605" class="chartjs-render-monitor"></canvas>
+                            <canvas id="barChart2" width="500" height="200">
+
+                            </canvas>
                           </div>
                           <!-- /.chart-responsive -->
                         </div>
@@ -96,25 +106,37 @@
                             <strong>Proyectos con participacion <?php echo e($proyectosRegistrados); ?></strong>
                           </p>
                         <!-- /.progress-group -->
-                          <?php $__currentLoopData = $proyectosRegistradosList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                          <div class="progress-group">
-                           <?php if($item->proyecto =='1'): ?>         
-                              Barlovento tepic
-                          <?php elseif($item->proyecto =='2'): ?> 
-                              Barlovento Las varas
-                          <?php elseif($item->proyecto =='3'): ?> 
-                              Barlovento Chacala
-                          <?php endif; ?>
+                      
+
+                          <div class="progress-group"> <?php $__currentLoopData = $proyectosRegistradosList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php if($item->proyecto == 1): ?>         
+                            Barlovento tepic  
                             <span class="float-right"><b>0</b>/100</span>
                             <div class="progress progress-sm">
                               <div class="progress-bar bg-primary" style="width: 0%"></div>
                             </div>
-                          </div>
-                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-                      
-      
+                            <br>
                           
+                             <?php elseif($item->proyecto == 2): ?>         
+                             Barlovento las varas
+                             <span class="float-right"><b>0</b>/100</span>
+                             <div class="progress progress-sm">
+                               <div class="progress-bar bg-primary" style="width: 0%"></div>
+                             </div>
+                             <br>
+                             <?php elseif($item->proyecto == 3): ?>         
+                             Barlovento New chacal 
+                             <span class="float-right"><b>0</b>/100</span>
+                             <div class="progress progress-sm">
+                               <div class="progress-bar bg-primary" style="width: 0%"></div>
+                             </div>
+                             <br>
+                              <?php else: ?>
+                          <?php endif; ?>
+                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                         
+                          
+                        </div>
                           <!-- /.progress-group -->
                         </div>
                         <!-- /.col -->
@@ -171,9 +193,8 @@
               </div>
               <div class="row">
            <!-- Left col -->
-            <section class="col-lg-8  ">
 
-
+            <section class="col-lg-12  ">
                 <div class="card bg-dark">
                     <div class="card-header">
                       <h3 class="card-title">Acciones</h3>
@@ -191,7 +212,7 @@
                       <div class="row">
                         <div class="col-md-8">
                           <div class="chart-responsive"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                            <canvas id="pieChart" height="84" width="170" class="chartjs-render-monitor -" style="display: block; height: 77px; width: 155px;"></canvas>
+                            <canvas id="barChart2" height="84" width="170" class="chartjs-render-monitor -" style="display: block; height: 77px; width: 155px;"></canvas>
                           </div>
                           <!-- ./chart-responsive -->
                         </div>
@@ -199,18 +220,19 @@
                         <div class="col-md-4 ">
                           <ul class="chart-legend clearfix">
                             <li>
-                              <?php $__currentLoopData = $proyectosRegistradosList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                               <div class="progress-group">
-                               <?php if($item->proyecto =='1'): ?>         
-                               <i class="far fa-circle text-success"></i>Barlovento tepic
-                              <?php elseif($item->proyecto =='2'): ?> 
-                              <i class="far fa-circle text-success"></i>Barlovento Las varas
-                              <?php elseif($item->proyecto =='3'): ?> 
-                              <i class="far fa-circle text-success"></i>Barlovento Chacala
-                              <?php else: ?>
-                              Invierte para ver datos
-                              <?php endif; ?>
-                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                <?php if($proyectosRegistradosList->proyecto ='1'): ?>         
+                                <i class="far fa-circle text-success"></i>Barlovento tepic 
+                                <?php else: ?>
+                                <?php endif; ?>
+                                <?php if($proyectosRegistradosList->proyecto  ='2'): ?> 
+                                <i class="far fa-circle text-success"></i>Barlovento Las varas
+                                <?php else: ?>
+                                <?php endif; ?>
+                                <?php if($proyectosRegistradosList->proyecto  ='3'): ?> 
+                                <i class="far fa-circle text-success"></i>Barlovento Chacala
+                                <?php else: ?>
+                                <?php endif; ?>
                             </li>
                           </ul>
                         </div>
@@ -223,31 +245,48 @@
                       <table class="table bg-dark">
                         <thead>
                           <tr>
+                            <th class="text-center" scope="col">Coin</th>
                             <th class="text-center" scope="col">Proyecto</th>
                             <th class="text-center" scope="col">Inversion</th>
                             <th class="text-center" scope="col">Participacion</th>
+                            <th class="text-center" scope="col">$/Accion</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                           <?php $__currentLoopData = $proyectosRegistradosList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <?php if($item->proyecto =='1'): ?>         
+                          
+                           
+                          <?php if($proyectosRegistradosList->proyecto ='1'): ?>    
+                          <tr>     
+                          <td class="text-center"><img style=" width: 25px;" src="\imagenes\t.png" /> </td>  
                             <td class="text-center"> Barlovento tepic</td>   
-                            <td class="text-center text-success"><?php echo e("$ " . number_format($item->monto, 0, ",", ",")); ?>.00</td>
-                            <td class="text-center text-success">10%</td>
+                            <td class="text-center text-success"><?php echo e("$ " . number_format($capitaTep, 0, ",", ",")); ?>.00</td>
+                            <td class="text-center text-success"><?php echo e($partTepic); ?>%</td>
+                            <td class="text-center text-success">$ 750,000.00</td>
                           </tr>
-                           <?php elseif($item->proyecto =='2'): ?> 
+                          <?php else: ?>
+                          <?php endif; ?>
+                          <tr>
+                           <?php if($proyectosRegistradosList->proyecto ='2'): ?> 
+                           <td class="text-center"><img style=" width: 25px;" src="\imagenes\l.png" /> </td>  
                            <td class="text-center"> Barlovento Las varas</td>   
-                           <td class="text-center text-success"><?php echo e("$ " . number_format($item->monto, 0, ",", ",")); ?>.00</td>
-                           <td class="text-center text-success">10%</td>
+                           <td class="text-center text-success"><?php echo e("$ " . number_format($capitaChaca, 0, ",", ",")); ?>.00</td>
+                           <td class="text-center text-success"><?php echo e($parVars); ?>%</td>
+                           <td class="text-center text-success">$ 500,000.00</td>
                           </tr>
-                           <?php elseif($item->proyecto =='3'): ?> 
+                          <?php else: ?>
+                          <?php endif; ?>
+                          <tr>
+                           <?php if($proyectosRegistradosList->proyecto ='3'): ?> 
+                            <td class="text-center"><img style=" width: 25px;" src="\imagenes\c.png" /> </td>  
                             <td class="text-center">  Barlovento Chacala</td>  
-                            <td class="text-center text-success"><?php echo e("$ " . number_format($item->monto, 0, ",", ",")); ?>.00</td>
-                            <td class="text-center text-success">10%</td>
+                            <td class="text-center text-success"><?php echo e("$ " . number_format($capitaChaca, 0, ",", ",")); ?>.00</td>
+                            <td class="text-center text-success"><?php echo e($parChaca); ?>%</td>
+                            <td class="text-center text-success">$ 500,000.00</td>
                           </tr>
+                          <?php else: ?> 
+
                            <?php endif; ?>
-                           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                         
                         </tbody>
                       </table>
                     </div>
@@ -268,8 +307,8 @@
     data: {
         labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
         datasets: [{
-            label: '# Ganancia Mensual',
-            data: [0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0],
+            label: 'Registro de inversion ',
+            data: [<?php echo e($ene); ?>, <?php echo e($feb); ?>,<?php echo e($mar); ?>, <?php echo e($abr); ?>,<?php echo e($may); ?>,<?php echo e($jun); ?>,<?php echo e($jul); ?>,<?php echo e($ago); ?>,<?php echo e($sep); ?>,<?php echo e($oct); ?>,<?php echo e($nov); ?>,<?php echo e($dec); ?>],
             backgroundColor: [
                 'rgba(54, 162, 235, 0.5)',
                 'rgba(54, 162, 235, 0.5)',
@@ -284,41 +323,10 @@
                 'rgba(54, 162, 235, 0.5)',
                 'rgba(54, 162, 235, 0.5)',      
             ],
-            borderWidth: 1
+          borderWidth: 1
         }]
     },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
 });
-    //-------------
-    //- radial CHART -
-    //-------------
-  var ctx = document.getElementById('pieChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        labels: ["
-          Barlovento Tepic,  Barlovento las Varas, Barlovento Chacala"
-        ],
-        datasets: [{
-            label: '# Proyectos',
-            data: [1, 4,],
-            backgroundColor: [
-                'rgba(255, 162, 35, 0.5)',
-                'rgba(54, 162, 235, 0.5)',   
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-    }
-});
-
 </script>
 <?php $__env->stopSection(); ?>
 

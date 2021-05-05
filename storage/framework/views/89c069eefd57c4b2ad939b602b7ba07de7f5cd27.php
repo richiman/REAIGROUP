@@ -236,8 +236,7 @@
         labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
         datasets: [{
             label: 'Inversion',
-            data: [<?php echo e($ene); ?>, <?php echo e($feb); ?>,<?php echo e($mar); ?>, <?php echo e($abr); ?>,<?php echo e($may); ?>, <?php echo e($jun); ?>,<?php echo e($jul); ?>,<?php echo e($ago); ?>,<?php echo e($sep); ?>,<?php echo e($oct); ?>,<?php echo e($nov); ?>,<?php echo e($dec); ?>
-
+            data: [}
             ],
             backgroundColor: [
                 'rgba(54, 162, 235, 0.5)',
@@ -296,6 +295,7 @@
         }
     }
 });
+
 
 <?php if(session('info')): ?>
 const Toast = Swal.mixin({
