@@ -87,7 +87,7 @@
                           
                           <div class="chart"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
                             <!-- Sales Chart Canvas -->
-                            <canvas id="barChart2" height="198" style="height: 180px; display: block; width: 550px;" width="605" class="chartjs-render-monitor"></canvas>
+                            <canvas id="barChart" height="198" style="height: 180px; display: block; width: 550px;" width="605" class="chartjs-render-monitor"></canvas>
                           </div>
                           <!-- /.chart-responsive -->
                         </div>
@@ -205,7 +205,7 @@
                       <div class="card-body ">
                         <div class="d-flex">
                           <p class="d-flex flex-column">
-                            <span class="text-bold text-lg">$0.00</span>
+                            <span class="text-bold text-lg">$ 0.00 </span>
                             <span>Ganancias </span>
                           </p>
                           <p class="ml-auto d-flex flex-column text-right">
@@ -215,25 +215,12 @@
                             <span class="text">Desde el mes pasado</span>
                           </p>
                         </div>
-                        <!-- /.d-flex -->
-                          <div class="chart"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class="">
-                              </div>
-                          </div>
-                          <div class="chartjs-size-monitor-shrink"><div class="">
-                              </div>
-                          </div>
-                      </div>
-                           <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 447px;" width="447" height="250" class="chartjs-render-monitor"></canvas>
-                          </div>
+                        <canvas id="barChart2" width="500" height="200"></canvas>
+                         </div>
                       </div>
                     </div>
-                  
-                      <!-- /.card-body -->
                     </div>
               </section>
-           <!-- Left col -->
-
-  
         </div>
        </div>
 @endsection
@@ -244,15 +231,16 @@
     //-------------
     var ctx = document.getElementById('barChart').getContext('2d');
     var myChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'line',
     data: {
         labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
         datasets: [{
-            label: '# Ganancia Mensual',
-            data: [0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0],
+            label: 'Inversion',
+            data: [{{$ene}}, {{$feb}},{{$mar}}, {{$abr}},{{$may}}, {{$jun}},{{$jul}},{{$ago}},{{$sep}},{{$oct}},{{$nov}},{{$dec}}
+            ],
             backgroundColor: [
                 'rgba(54, 162, 235, 0.5)',
-                'rgba(54, 162, 235, 0.5)',
+                'rgba(54, 133, 125, 0.5)',
                 'rgba(54, 162, 235, 0.5)',
                 'rgba(54, 162, 235, 0.5)',
                 'rgba(54, 162, 235, 0.5)',
@@ -264,16 +252,12 @@
                 'rgba(54, 162, 235, 0.5)',
                 'rgba(54, 162, 235, 0.5)',      
             ],
-            borderWidth: 1
+            borderWidth: 2
         }]
     },
     options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
+    responsive: true,
+  },
 });
 //-------------
     //- line CHART -
@@ -284,8 +268,8 @@
     data: {
         labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
         datasets: [{
-            label: '# Ganancia Mensual',
-            data: [0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0],
+            label: 'Inversion:',
+            data: [, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0],
             backgroundColor: [
                 'rgba(54, 162, 235, 0.5)',
                 'rgba(54, 162, 235, 0.5)',

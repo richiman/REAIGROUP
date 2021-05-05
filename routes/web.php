@@ -58,7 +58,7 @@ Route::post('invertirBarloTepic', function(Request $request){
     $user = Auth::user();
     if($nuevaInversion-> monto = $request->input('cantidadInvertida') <  500000 || $user->capital < 1  ){
 
-    return redirect('/invertirBarloTepic')->with('error', 'No puede ingresar valores inferiores al valor de la accion o su capital.');
+    return redirect('/barloventoTepic')->with('error', 'No puede ingresar valores inferiores al valor de la accion o su capital.');
 
     }elseif( $nuevaInversion-> monto = $request->input('cantidadInvertida') > $user->capital ){
         return redirect('/barloventoTepic')->with('error', 'No puede ingresar valores superiores a su capital a su capital.');
@@ -75,13 +75,21 @@ Route::post('invertirBarloTepic', function(Request $request){
 //Dashboard barloventoTepic
 Route::get('barloventoTepic', function (){
     $user = Auth::user();
-    $capitalInvertidoEnProyecto = DB::table("inversiones")
-    ->where('userId',  $user->id )
-    ->where( 'proyecto' , 1 )->get()->sum("monto");
-    $invertsInProyect = DB::table('inversiones')
-    ->where( 'proyecto' , 1 )
-    ->distinct('userId')->count('userId');
-    return view ('layouts.desarrollos.barloventoTepic', compact('user','capitalInvertidoEnProyecto','invertsInProyect'));
+    $capitalInvertidoEnProyecto = DB::table('inversiones')->where('userId',  $user->id )->where( 'proyecto' , 1 )->get()->sum('monto');
+    $invertsInProyect = DB::table('inversiones')->where( 'proyecto' , 1 )->distinct('userId')->count('userId');
+    $ene =  DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '01')->get()->sum('monto');
+    $feb =  DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '02')->get()->sum('monto');
+    $mar =  DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '03')->get()->sum('monto');
+    $abr =  DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '04')->get()->sum('monto');
+    $may =  DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '05')->get()->sum('monto');
+    $jun =  DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '06')->get()->sum('monto');
+    $jul =  DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '07')->get()->sum('monto');
+    $ago =  DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '08')->get()->sum('monto');
+    $sep =  DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '09')->get()->sum('monto');
+    $oct=   DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '10')->get()->sum('monto');
+    $nov =  DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '11')->get()->sum('monto');
+    $dec =  DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '12')->get()->sum('monto');
+    return view ('layouts.desarrollos.barloventoTepic', compact('user','capitalInvertidoEnProyecto','invertsInProyect','ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dec'));
 });
 //-------------------------------------------------------- BarloTepic ------------------------------------------------------------------
 
