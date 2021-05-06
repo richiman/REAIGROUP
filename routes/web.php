@@ -75,10 +75,7 @@ Route::get('invertirBarloTepic', function () {
     $historial = DB::table("inversiones")->where('userId',  $user->id )->get();
     $porcProyecto = DB::table("inversiones")->where('proyecto',  1 )->get()->sum("monto");
     $disponibleTepic = 7500000 - $porcProyecto;
-
-
-
-   return view('layouts.desarrollos.invertirBarloTepic', compact('user','historial','porcProyecto','disponibleTepic'));
+   return view('layouts.desarrollos.invertirBarloTepic', compact('user','historial','porcProyecto','disponibleTepic','TuParte'));
 });
 
 
@@ -175,7 +172,7 @@ Route::get('NewChacala', function () {
 Route::post('invertirNewChacala', function(Request $request){
     $nuevaInversion = new Inversiones;
     $user = Auth::user();
-    if($nuevaInversion-> monto = $request->input('cantidadInvertida') <  750000 || $user->capital < 1  ){
+    if($nuevaInversion-> monto = $request->input('cantidadInvertida') <  500000 || $user->capital < 1  ){
 
     return redirect('/NewChacala')->with('error', 'No puede ingresar valores inferiores al valor de la accion o su capital.');
 

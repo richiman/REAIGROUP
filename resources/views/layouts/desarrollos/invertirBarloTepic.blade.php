@@ -95,7 +95,7 @@
 @section('js')  
 <script>
     //--------------
-    //- line CHART -
+    //- pie CHART -
    //--------------
    var ctx = document.getElementById('barChart2').getContext('2d');
     var myChart = new Chart(ctx, {
@@ -104,10 +104,11 @@
         labels: ['Disponible', 'Comprado'],
         datasets: [{
             label: 'Acciones disponibles ',
-            data: [{{$disponibleTepic}},{{$porcProyecto}}],
+            data: [{{$disponibleTepic}},{{$porcProyecto}},],
             backgroundColor: [
                 'rgba(128, 255, 128, 0.75)',
                 'rgba(255, 92, 51, 0.75)',
+               
             ],
           borderWidth: 1
         }]
