@@ -108,7 +108,8 @@
                         <!-- /.progress-group -->
                       
 
-                          <div class="progress-group"> @foreach ($proyectosRegistradosList as $item)
+                          <div class="progress-group"> 
+                            @foreach ($proyectosRegistradosList as $item)
                             @if($item->proyecto == 1)         
                             Barlovento tepic  
                             <span class="float-right"><b>0</b>/100</span>
@@ -245,7 +246,7 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer  p-0">
-                      <table class="table bg-dark">
+                      <table class="table bg-dark table-responsive">
                         <thead>
                           <tr>
                             <th class="text-center" scope="col">Coin</th>

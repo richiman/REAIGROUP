@@ -259,7 +259,7 @@
     responsive: true,
   },
 });
-//-------------
+     //-------------
     //- line CHART -
     //-------------
     var ctx = document.getElementById('barChart2').getContext('2d');
