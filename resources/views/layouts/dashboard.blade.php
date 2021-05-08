@@ -192,9 +192,8 @@
                 </div>
                 <!-- /.col -->
               </div>
-              <div class="row">
-           <!-- Left col -->
-
+            </div>
+            <div class="row">
             <section class="col-lg-12  ">
                 <div class="card bg-dark">
                     <div class="card-header">
@@ -215,6 +214,7 @@
                           <div class="chart-responsive"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
                           <canvas id="pieChart" width="300" height="150">
                           </div>
+                          
                           <!-- ./chart-responsive -->
                         </div>
                         <!-- /.col -->
@@ -242,11 +242,12 @@
                         </div>
                         <!-- /.col -->
                       </div>
+                    </div>
                       <!-- /.row -->
                     </div>
                     <!-- /.card-body -->
-                    <div class="card-footer  p-0">
-                      <table class="table bg-dark table-responsive">
+                    <div class="card-footer   p-0">
+                      <table class="table bg-dark  ">
                         <thead>
                           <tr>
                             <th class="text-center" scope="col">Coin</th>
