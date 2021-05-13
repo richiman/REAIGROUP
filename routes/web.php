@@ -47,7 +47,7 @@ Route::get('dashboard', function () {
 
     $partTepic = $capitaTep / 7500000 * 100 ;
     $parVars = $capitaVars / 10000000 * 200 ;
-    $parChaca = $capitaChaca / 10000000 * 200 ;
+    $parChaca = $capitaChaca / 10000000 * 100 ;
 
     $proyectosRegistradosList = DB::table("inversiones")->where('userId',  $user->id )->get()->unique('proyecto');
     

@@ -223,17 +223,17 @@
                             <li>
                               <div class="progress-group">
                                 <?php if($proyectosRegistradosList->proyecto ='1'): ?>         
-                                <i class="far fa-circle text-danger"></i>Barlovento tepic 
+                                <i class="far fa-circle text-danger"></i> - Barlovento tepic 
                                 <br><br>
                                 <?php else: ?>
                                 <?php endif; ?>
                                 <?php if($proyectosRegistradosList->proyecto  ='2'): ?> 
-                                <i class="far fa-circle text-info"></i>Barlovento Las varas
+                                <i class="far fa-circle text-info"></i> - Barlovento Las varas
                                 <br><br>
                                 <?php else: ?>
                                 <?php endif; ?>
                                 <?php if($proyectosRegistradosList->proyecto  ='3'): ?> 
-                                <i class="far fa-circle text-warning"></i>Barlovento Chacala
+                                <i class="far fa-circle text-warning"></i> - Barlovento Chacala
                                 <br><br>
                                 <?php else: ?>
                                 <?php endif; ?>

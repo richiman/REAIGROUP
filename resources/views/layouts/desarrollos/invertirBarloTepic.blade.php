@@ -14,7 +14,6 @@
      <br>
     </div>
     <h4>Capital: {{"$ " . number_format($user->capital, 0, ",", ",")}}.00</h4>
-    <h4>Inversion total: {{"$ " . number_format($porcProyecto, 0, ",", ",")}}.00</h4>
     <br>
   </div>
 
@@ -36,7 +35,13 @@
                       <h6 class="text-success" >Lo sentimos ya no existen acciones   disponibles para este proyecto. </h6>
                       </div>
                       @else
-                      <input type="number" class="form-control" name="cantidadInvertida"  placeholder="Multiplos de 750,000.00" required>
+                         <select type="number" class="form-control" name="cantidadInvertida"  placeholder="Multiplos de 750,000.00" required>
+                          <option value="750000"> 1 = 10%</option>
+                          <option value="1500000"> 2 = 20%</option>
+                          <option value="2250000"> 3 = 30%</option>
+                          <option value="3000000"> 4 = 40%</option>
+                          <option value="3750000"> 5 = 50%</option>
+                        </select>
                       </div>
                       <input type="currency" min="750000" step="any" name="userId" value="{{$user->id}}" style="display: none;">
                       <button type="submit" class="btn btn-primary mb-2" >Invertir</button>
