@@ -51,18 +51,18 @@ Route::get('dashboard', function () {
 
     $proyectosRegistradosList = DB::table("inversiones")->where('userId',  $user->id )->get()->unique('proyecto');
     
-    $ene =  DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '01')->get()->sum('monto');
-    $feb =  DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '02')->get()->sum('monto');
-    $mar =  DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '03')->get()->sum('monto');
-    $abr =  DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '04')->get()->sum('monto');
-    $may =  DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '05')->get()->sum('monto');
-    $jun =  DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '06')->get()->sum('monto');
-    $jul =  DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '07')->get()->sum('monto');
-    $ago =  DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '08')->get()->sum('monto');
-    $sep =  DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '09')->get()->sum('monto');
-    $oct=   DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '10')->get()->sum('monto');
-    $nov =  DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '11')->get()->sum('monto');
-    $dec =  DB::table('inversiones')->where('userId', $user->id)->where( 'proyecto' , 1 )->whereMonth('created_at', '=', '12')->get()->sum('monto');
+    $ene =  DB::table('inversiones')->where('userId', $user->id)->whereMonth('created_at', '=', '01')->get()->sum('monto');
+    $feb =  DB::table('inversiones')->where('userId', $user->id)->whereMonth('created_at', '=', '02')->get()->sum('monto');
+    $mar =  DB::table('inversiones')->where('userId', $user->id)->whereMonth('created_at', '=', '03')->get()->sum('monto');
+    $abr =  DB::table('inversiones')->where('userId', $user->id)->whereMonth('created_at', '=', '04')->get()->sum('monto');
+    $may =  DB::table('inversiones')->where('userId', $user->id)->whereMonth('created_at', '=', '05')->get()->sum('monto');
+    $jun =  DB::table('inversiones')->where('userId', $user->id)->whereMonth('created_at', '=', '06')->get()->sum('monto');
+    $jul =  DB::table('inversiones')->where('userId', $user->id)->whereMonth('created_at', '=', '07')->get()->sum('monto');
+    $ago =  DB::table('inversiones')->where('userId', $user->id)->whereMonth('created_at', '=', '08')->get()->sum('monto');
+    $sep =  DB::table('inversiones')->where('userId', $user->id)->whereMonth('created_at', '=', '09')->get()->sum('monto');
+    $oct=   DB::table('inversiones')->where('userId', $user->id)->whereMonth('created_at', '=', '10')->get()->sum('monto');
+    $nov =  DB::table('inversiones')->where('userId', $user->id)->whereMonth('created_at', '=', '11')->get()->sum('monto');
+    $dec =  DB::table('inversiones')->where('userId', $user->id)->whereMonth('created_at', '=', '12')->get()->sum('monto');
 
 
       
@@ -75,7 +75,7 @@ Route::get('invertirBarloTepic', function () {
     $historial = DB::table("inversiones")->where('userId',  $user->id )->get();
     $porcProyecto = DB::table("inversiones")->where('proyecto',  1 )->get()->sum("monto");
     $disponibleTepic = 7500000 - $porcProyecto;
-   return view('layouts.desarrollos.invertirBarloTepic', compact('user','historial','porcProyecto','disponibleTepic','TuParte'));
+   return view('layouts.desarrollos.invertirBarloTepic', compact('user','historial','porcProyecto','disponibleTepic'));
 });
 
 

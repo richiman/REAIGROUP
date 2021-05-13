@@ -257,6 +257,9 @@ return [
                         ],[
                             'text' => 'Pagina web',
                             'url'  => '#',
+                        ],[
+                            'text' => 'Documentacion',
+                            'url'  => '#',
                         ],
                     ]
                 ],[
@@ -274,6 +277,9 @@ return [
                         ],[
                             'text' => 'Pagina web',
                             'url'  => '#',
+                        ],[
+                            'text' => 'Documentacion',
+                            'url'  => '#',
                         ],
                     ]
                 ], [
@@ -289,6 +295,9 @@ return [
                             'url'  => 'invertirNewChacala',
                         ],[
                             'text' => 'Pagina web',
+                            'url'  => '#',
+                        ],[
+                            'text' => 'Documentacion',
                             'url'  => '#',
                         ],
                     ]
