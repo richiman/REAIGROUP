@@ -1,3 +1,24 @@
+<style>
+    .button {
+  background-color: #000;
+  border: none;
+  color: white;
+  padding: 5px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 16px;
+}
+
+.button:hover {
+  background-color: #f1f1f1;
+  color: #000;
+}
+
+</style>
+
 <nav class="main-header navbar
     {{ config('adminlte.classes_topnav_nav', 'navbar-expand') }}
     {{ config('adminlte.classes_topnav', 'navbar-white navbar-light') }}">
@@ -21,7 +42,9 @@
 
         {{-- Configured right links --}}
         @each('adminlte::partials.navbar.menu-item', $adminlte->menu('navbar-right'), 'item')
-
+        
+            <button class="button">{{"$ " . number_format($user->capital, 0, ",", ",")}}.00 MXN</button>
+        
         {{-- User menu link --}}
         @if(Auth::user())
             @if(config('adminlte.usermenu_enabled'))
@@ -30,7 +53,7 @@
                 @include('adminlte::partials.navbar.menu-item-logout-link')
             @endif
         @endif
-
+           
         {{-- Right sidebar toggler link --}}
         @if(config('adminlte.right_sidebar'))
             @include('adminlte::partials.navbar.menu-item-right-sidebar-toggler')

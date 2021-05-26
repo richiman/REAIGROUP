@@ -197,6 +197,13 @@ Route::get('invertirNewChacala', function (){
     $disponibleChaca = 10000000 - $porcProyecto;
     return view ('layouts.desarrollos.invertirNewChac', compact('user','historial','porcProyecto','disponibleChaca'));
 });
+
+
+Route::get('documentosChacala', function (){
+    $user = Auth::user();
+    return view ('layouts.desarrollos.documentosChacala');
+});
+
 //-------------------------------------------------------New Chacala--------------------------------------------------------------------------------
 
 

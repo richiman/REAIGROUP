@@ -97,7 +97,7 @@
                           </p>
       
                           <div class="progress-group">
-                             Infraestructura del proyecto
+                            Retorno de capital
                             <span class="float-right"><b>0</b>/100</span>
                             <div class="progress progress-sm">
                               <div class="progress-bar bg-info" style="width: 0%"></div>
@@ -106,7 +106,7 @@
                           <!-- /.progress-group -->
       
                           <div class="progress-group">
-                            Retorno de capital
+                            Infraestructura del proyecto
                             <span class="float-right"><b>0</b>/100</span>
                             <div class="progress progress-sm">
                               <div class="progress-bar bg-danger" style="width: 0%"></div>

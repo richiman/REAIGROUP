@@ -1,3 +1,24 @@
+<style>
+    .button {
+  background-color: #000;
+  border: none;
+  color: white;
+  padding: 5px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 16px;
+}
+
+.button:hover {
+  background-color: #f1f1f1;
+  color: #000;
+}
+
+</style>
+
 <nav class="main-header navbar
     <?php echo e(config('adminlte.classes_topnav_nav', 'navbar-expand')); ?>
 
@@ -22,7 +43,9 @@
 
         
         <?php echo $__env->renderEach('adminlte::partials.navbar.menu-item', $adminlte->menu('navbar-right'), 'item'); ?>
-
+        
+            <button class="button"><?php echo e("$ " . number_format($user->capital, 0, ",", ",")); ?>.00 MXN</button>
+        
         
         <?php if(Auth::user()): ?>
             <?php if(config('adminlte.usermenu_enabled')): ?>
@@ -31,7 +54,7 @@
                 <?php echo $__env->make('adminlte::partials.navbar.menu-item-logout-link', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <?php endif; ?>
         <?php endif; ?>
-
+           
         
         <?php if(config('adminlte.right_sidebar')): ?>
             <?php echo $__env->make('adminlte::partials.navbar.menu-item-right-sidebar-toggler', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

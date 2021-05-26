@@ -37,10 +37,36 @@
                 <!-- ./col -->
                 <div class="col-lg-3 col-6">
                   <!-- small box -->
-                  <div class="small-box bg-warning">
+                  <div type="button" data-toggle="modal" data-target="#exampleModal" class="small-box bg-warning">
                     <div class="inner">
-                      <h3>0%</h3>
-                      <p>Tus acciones</p>
+                      <h3>10</h3>
+                      <p>Documentos del proyecto</p>
+                    </div>
+                   
+                    <!-- Modal Documentos -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <ul class="list-group">
+                              <li class="list-group-item"><i class="fas fa-file-pdf"></i>  Escrituras <i class="fas fa-download float-right"></i></li>
+                              <li class="list-group-item"><i class="fas fa-file-pdf"></i>  Contrato de inversion <i class="fas fa-download float-right"></i></li>
+                              <li class="list-group-item"><i class="fas fa-file-pdf"></i>  Contrato de terreno <i class="fas fa-download float-right"></i></li>
+                              <li class="list-group-item"><i class="fas fa-file-pdf"></i>  Plan parcial <i class="fas fa-download float-right"></i></li>
+                              <li class="list-group-item"><i class="fas fa-file-pdf"></i>  Contrato de compraventa <i class="fas fa-download float-right"></i></li>
+                            </ul>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div class="icon">
                       <i class="fas fa-file-alt"></i>
