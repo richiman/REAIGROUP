@@ -23,8 +23,8 @@
           <div class="card bg-dark">
             <div class="card-body">
               <h5 class="card-title">Comprar acciones </h5>
-              <p class="card-text"> <h3>Ventas</h3> </p>
-                <p class="text-muted">  Costo por accion $ 500,000.00 MXN </p>
+              <p class="card-text"> <h3>Por porcentaje de ventas.</h3> </p>
+                <p class="text-muted">Costo por accion $ 500,000.00 MXN con utilidad del 25% Anual. </p>
                 <form class="form-inline d-flex justify-content-center " action="{{ route('crear.inversion2') }}"  method="POST">
                   @method('post')
                   @csrf
@@ -32,7 +32,7 @@
                   <input type="text" name="tipoCotrato" value="1" style="display: none;">
                     <div class="form-group mx-sm-2 mb-2">
                       @if ($porcProyecto >= 5000000)
-                      <h6 class="text-success" >Lo sentimos ya no existen acciones   disponibles para este proyecto. </h6>
+                      <h6 class="text-success" >Lo sentimos ya no existen acciones disponibles para este proyecto. </h6>
                       </div>
                       @else
                       <select type="number" class="form-control" name="cantidadInvertida"  placeholder="Multiplos de 750,000.00" required>
