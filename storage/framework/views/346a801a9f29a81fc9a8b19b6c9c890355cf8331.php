@@ -10,49 +10,61 @@
 
 <div class="container  ">
   <div class="container card bg-dark ">
-    <div class="row">
-     <br>
-    </div>
-    <h4>Capital: <?php echo e("$ " . number_format($user->capital, 0, ",", ",")); ?>.00</h4>
-    <br>
   </div>
-
-
     <div class="row">
         <div class="col-sm-6 text-center">
           <div class="card bg-dark">
             <div class="card-body">
               <h5 class="card-title">Comprar acciones </h5>
-              <p class="card-text"> <h3>Ventas</h3> </p>
-                <p class="text-muted">  Costo por accion $ 500,000.00 MXN </p>
+              <p class="card-text"> <h3>Por porcentaje de ventas.</h3> </p>
+                <p class="text-muted">Costo por accion $ 500,000.00 MXN con utilidad del 25% Anual. </p>
                 <form class="form-inline d-flex justify-content-center " action="<?php echo e(route('crear.inversion2')); ?>"  method="POST">
                   <?php echo method_field('post'); ?>
                   <?php echo csrf_field(); ?>
                   <input type="text" name="proyectoId" value="2" style="display: none;">
-                  <input type="text" name="tipoCotrato" value="1" style="display: none;">
+                  <input type="text" name="tipoCotrato" value="2" style="display: none;">
                     <div class="form-group mx-sm-2 mb-2">
                       <?php if($porcProyecto >= 5000000): ?>
-                      <h6 class="text-success" >Lo sentimos ya no existen acciones   disponibles para este proyecto. </h6>
+                      <h6 class="text-success" >Lo sentimos ya no existen acciones disponibles para este proyecto. </h6>
                       </div>
                       <?php else: ?>
-                      <select type="number" class="form-control" name="cantidadInvertida"  placeholder="Multiplos de 750,000.00" required>
-                        <option value="500000"> 1 = 10%</option>
-                        <option value="1000000"> 2 = 20%</option>
-                        <option value="1500000"> 3 = 30%</option>
-                        <option value="2000000"> 4 = 40%</option>
-                        <option value="2500000"> 5 = 50%</option>
-                      </select>  
+                      <div class="container ">
+                        <div class="row ">
+                          <div class="col-md ">
+                            <h5>Inversion por accion</h5>
+                            <input  id="myText" class="form-control" type="text" placeholder="0">
+                            <br><br>
+                          </div>
+                        </div>
+                        <div class="row " >
+                          <div class="col-md " >
+                            <h5>Porcentaje</h5>
+                            <select type="number" class="form-control" name="cantidadInvertida"  onchange="myFunction(event)" required>
+                              <option value="1230"> 0%</option>
+                              <option value="500000"> 10%</option>
+                              <option value="1000000">20%</option>
+                              <option value="1500000">30%</option>
+                              <option value="2000000">40%</option>
+                              <option value="2500000">50%</option>
+                            </select>  
+                            <br><br>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md " >
+                            <input type="currency" min="750000" step="any" name="userId" value="<?php echo e($user->id); ?>" style="display: none;">
+                            <button type="submit" class="btn btn-primary mb-2" >Comprar</button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                      <input type="currency" min="750000" step="any" name="userId" value="<?php echo e($user->id); ?>" style="display: none;">
-                      <button type="submit" class="btn btn-primary mb-2" >Invertir</button>
                       <?php endif; ?>
                  </form>
-                 <br><br><br><br>
             </div>
           </div>
         </div>
         <div class="col-sm-6">
-            <div class="card bg-dark">
+            <div class="card bg-dark" style="height: 332px;">
               <div class="card-body">
                <h6 class="text-center">Disponibles | No disponibles</h6> 
             <canvas id="barChart2"  ></canvas>
@@ -159,6 +171,9 @@ Toast.fire({
 })
 
 <?php endif; ?>
+function myFunction(e) {
+    document.getElementById("myText").value = e.target.value
+}
 </script>
 
 <?php $__env->stopSection(); ?>

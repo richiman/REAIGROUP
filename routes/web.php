@@ -220,6 +220,16 @@ Route::put('user/{id}', function(Request $request, $id){
             $file->move(public_path(). '/imagenes', $file->getClientOriginalName());
             $user->imagen = $file->getClientOriginalName();
         }
+        if($request -> hasFile('ineFro')){
+            $file = $request -> ineFro;
+            $file->move(public_path(). '/imagenes', $file->getClientOriginalName());
+            $user->ineFro = $file->getClientOriginalName();
+        }
+        if($request -> hasFile('inePos')){
+            $file = $request -> inePos;
+            $file->move(public_path(). '/imagenes', $file->getClientOriginalName());
+            $user->inePos = $file->getClientOriginalName();
+        }
        $user->save();
        return redirect('/profile')->with('info', 'Datos de perfil actualizados correctamente');
 })->name('user.update');

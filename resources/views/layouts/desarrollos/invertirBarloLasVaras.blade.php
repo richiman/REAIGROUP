@@ -10,14 +10,7 @@
 
 <div class="container  ">
   <div class="container card bg-dark ">
-    <div class="row">
-     <br>
-    </div>
-    <h4>Capital: {{"$ " . number_format($user->capital, 0, ",", ",")}}.00</h4>
-    <br>
   </div>
-
-
     <div class="row">
         <div class="col-sm-6 text-center">
           <div class="card bg-dark">
@@ -29,30 +22,49 @@
                   @method('post')
                   @csrf
                   <input type="text" name="proyectoId" value="2" style="display: none;">
-                  <input type="text" name="tipoCotrato" value="1" style="display: none;">
+                  <input type="text" name="tipoCotrato" value="2" style="display: none;">
                     <div class="form-group mx-sm-2 mb-2">
                       @if ($porcProyecto >= 5000000)
                       <h6 class="text-success" >Lo sentimos ya no existen acciones disponibles para este proyecto. </h6>
                       </div>
                       @else
-                      <select type="number" class="form-control" name="cantidadInvertida"  placeholder="Multiplos de 750,000.00" required>
-                        <option value="500000"> 1 = 10%</option>
-                        <option value="1000000"> 2 = 20%</option>
-                        <option value="1500000"> 3 = 30%</option>
-                        <option value="2000000"> 4 = 40%</option>
-                        <option value="2500000"> 5 = 50%</option>
-                      </select>  
+                      <div class="container ">
+                        <div class="row ">
+                          <div class="col-md ">
+                            <h5>Inversion por accion</h5>
+                            <input  id="myText" class="form-control" type="text" placeholder="0">
+                            <br><br>
+                          </div>
+                        </div>
+                        <div class="row " >
+                          <div class="col-md " >
+                            <h5>Porcentaje</h5>
+                            <select type="number" class="form-control" name="cantidadInvertida"  onchange="myFunction(event)" required>
+                              <option value="0"> 0%</option>
+                              <option value="500000"> 10%</option>
+                              <option value="1000000">20%</option>
+                              <option value="1500000">30%</option>
+                              <option value="2000000">40%</option>
+                              <option value="2500000">50%</option>
+                            </select>  
+                            <br><br>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md " >
+                            <input type="currency" min="750000" step="any" name="userId" value="{{$user->id}}" style="display: none;">
+                            <button type="submit" class="btn btn-primary mb-2" >Comprar</button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                      <input type="currency" min="750000" step="any" name="userId" value="{{$user->id}}" style="display: none;">
-                      <button type="submit" class="btn btn-primary mb-2" >Invertir</button>
                       @endif
                  </form>
-                 <br><br><br><br>
             </div>
           </div>
         </div>
         <div class="col-sm-6">
-            <div class="card bg-dark">
+            <div class="card bg-dark" style="height: 332px;">
               <div class="card-body">
                <h6 class="text-center">Disponibles | No disponibles</h6> 
             <canvas id="barChart2"  ></canvas>
@@ -159,6 +171,9 @@ Toast.fire({
 })
 
 @endif
+function myFunction(e) {
+    document.getElementById("myText").value = e.target.value
+}
 </script>
 
 @endsection

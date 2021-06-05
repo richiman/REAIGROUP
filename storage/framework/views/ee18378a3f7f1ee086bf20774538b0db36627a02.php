@@ -9,6 +9,11 @@
 
 </div>
 <?php endif; ?>
+<style>
+  .image-upload>input {
+  display: none;
+}
+</style>
 <div class="container-fluid">
     <div class="row">
      
@@ -116,16 +121,19 @@
           <div class="tab-pane fade" id="v-pills-config" role="tabpanel" aria-labelledby="v-pills-config-tab">
             
             <div class="container">
+              <br>
               <h2 class="text-center">Configuracion de la cuenta</h2>
-              
+              <br>
               <form action="<?php echo e(route('user.update', $user->id)); ?>" enctype="multipart/form-data" method="POST">
                 <?php echo method_field('put'); ?>
                 <?php echo csrf_field(); ?>
                 <div class="input-group mb-3">
                   <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="imagen" aria-describedby="inputGroupFileAddon01">
+                   
+                     <input type="file" class="custom-file-input" name="imagen" aria-describedby="inputGroupFileAddon01">
                     <label class="custom-file-label" for="inputGroupFile01">Imagen de perfil</label>
                   </div>
+                 
                 </div>
                 <div class="">
                   <label for="">Nombre completo</label>
@@ -157,7 +165,42 @@
                     <input type="text" class="form-control" name="cp" value="<?php echo e($user->cp); ?>">
                   </div>
                 </div>
-                <button type="submit" style="float: right;" class="btn btn-primary">Guardar</button>
+                <div class="container">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm text-center">
+                        <h5>Identificacion frontal</h5>
+                        <div class="image-upload">
+                          <label for="file-input">
+                            <img src="imagenes/front.png"/>
+                          </label>
+                          <input id="file-input"  name="ineFro" type="file" />
+                        </div>
+                      </div>
+                      <div class="col-sm text-center">
+                        <h5>Identificacion posterior</h5>
+                        <div class="image-upload">
+                          <label for="file-input2">
+                            <img src="imagenes/back.png"/>
+                          </label>
+                          <input id="file-input2" name="inePos" type="file" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm">
+                    </div>
+                    <div class="col-sm text-center">
+                      <button type="submit"  style="top: 50%; left: 50%;" class="btn btn-primary ">Guardar</button>
+                      <br><br>
+                    </div>
+                    <div class="col-sm">
+                    </div>
+                  </div>
+                </div>
               </form>
             </div>
           </div>
