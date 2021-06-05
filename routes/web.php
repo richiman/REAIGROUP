@@ -215,6 +215,7 @@ Route::put('user/{id}', function(Request $request, $id){
        $user->estado = $request->input('estado');
        $user->telf = $request->input('telf');
        $user->cp = $request->input('cp');
+       $user->rfc = $request->input('rfc');
         if($request -> hasFile('imagen')){
             $file = $request -> imagen;
             $file->move(public_path(). '/imagenes', $file->getClientOriginalName());

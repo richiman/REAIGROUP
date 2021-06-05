@@ -150,16 +150,21 @@
                   <label for="">Direccion</label>
                   <input type="text" class="form-control" value="{{$user->direccion}}" name="direccion" placeholder="Calle numero col">
                 </div>
+                
                 <div class="form-row">
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-3">
+                    <label for="">RFC</label>
+                    <input type="text" class="form-control" value="{{$user->rfc}}" name="rfc"  placeholder="RFC">
+                  </div>
+                  <div class="form-group col-md-3">
                     <label for="">Ciudad</label>
                     <input type="text" class="form-control" value="{{$user->ciudad}}" name="ciudad" >
                   </div>
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-3">
                     <label for="">Estado</label>
                  <input type="text" class="form-control" value="{{$user->estado}}" name="estado" >
                   </div>
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-3">
                     <label for="">Codigo postal</label>
                     <input type="text" class="form-control" name="cp" value="{{$user->cp}}">
                   </div>
