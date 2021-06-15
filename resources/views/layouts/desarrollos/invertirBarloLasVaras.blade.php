@@ -24,7 +24,7 @@
                   <input type="text" name="proyectoId" value="2" style="display: none;">
                   <input type="text" name="tipoCotrato" value="2" style="display: none;">
                     <div class="form-group mx-sm-2 mb-2">
-                      @if ($porcProyecto >= 5000000)
+                      @if ($disponible >= $proyecto->costo)
                       <h6 class="text-success" >Lo sentimos ya no existen acciones disponibles para este proyecto. </h6>
                       </div>
                       @else
@@ -41,7 +41,7 @@
                             <h5>Porcentaje</h5>
                             <select type="number" class="form-control" name="cantidadInvertida"  onchange="myFunction(event)" required>
                               <option value="0"> 0%</option>
-                              <option value="500000"> 10%</option>
+                              <option value="{{ $proyecto->costoPaccion}}"> 1 = 10%</option>
                               <option value="1000000">20%</option>
                               <option value="1500000">30%</option>
                               <option value="2000000">40%</option>

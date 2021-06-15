@@ -40,7 +40,7 @@
                           <div class="col-md " >
                             <h5>Porcentaje</h5>
                             <select type="number" class="form-control" name="cantidadInvertida"  onchange="myFunction(event)" required>
-                              <option value="1230"> 0%</option>
+                              <option value="0"> 0%</option>
                               <option value="500000"> 10%</option>
                               <option value="1000000">20%</option>
                               <option value="1500000">30%</option>

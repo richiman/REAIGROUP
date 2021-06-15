@@ -95,18 +95,9 @@
                 <tbody>
                   <?php $__currentLoopData = $historial; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <tr>
-                    <?php if($item->proyecto =='1'): ?>         
-                    <td class="text-center">Barlo tepic</td>
-                    <?php elseif($item->proyecto =='2'): ?> 
-                    <td class="text-center">Barlo las varas</td>
-                    <?php elseif($item->proyecto =='3'): ?> 
-                    <td class="text-center">Barlo nuevo chacala</td>
-                    <?php endif; ?>
-                     <?php if($item->tipoCotrato =='1'): ?>         
-                     <td class="text-center">Ventas</td>
-                     <?php elseif($item->tipoCotrato =='2'): ?> 
-                     <td class="text-center">Porcentaje</td>
-                     <?php endif; ?>
+                           
+                    <td class="text-center"><?php echo e($item->id); ?></td>
+                    <td class="text-center"><?php echo e($item->tipoCotrato); ?></td>
                     <td class="text-center"><small><?php echo e("$" . number_format($item->monto, 0, ",", ",")); ?>.00</small></td>
                     <td class="text-center"><small><?php echo e(date('d-m-Y', strtotime($item->created_at))); ?></small></td>
                   

@@ -38,7 +38,7 @@
                   <!-- small box -->
                   <div class="small-box bg-warning">
                     <div class="inner">
-                      <h3>3</h3>
+                      <h3>{{$numProyectos}}</h3>
                       <p>Proyectos registrados </p>
                     </div>
                     <div class="icon">
@@ -352,6 +352,45 @@
         }]
     },
 });
+  
+@if (session('info'))
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    });
+    Toast.fire({
+      type: 'success',
+      title: '{{session('info')}} ' 
+    })
+    
+    @endif
+    
+    @if (session('error'))
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    });
+    Toast.fire({
+      type: 'warning',
+      title: '{{session('error')}} ' 
+    })
+    
+    @endif
+    
 </script>
 @endsection
 

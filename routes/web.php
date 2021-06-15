@@ -40,6 +40,7 @@ Route::get('dashboard', function () {
     $user = Auth::user();
     $count = DB::table('users')->count();
     $capitalInvertido = DB::table("inversiones")->where('userId',  $user->id)->get()->sum("monto");
+    $numProyectos = DB::table("proyects")->get()->count();
     $proyectosRegistrados = DB::table("inversiones")->where('userId',  $user->id)->get()->count();
     $capitaTep = DB::table("inversiones")->where('userId',  $user->id)->where('proyecto',  1)->get()->sum("monto");
     $capitaVars = DB::table("inversiones")->where('userId',  $user->id)->where('proyecto',  2)->get()->sum("monto");
@@ -66,7 +67,7 @@ Route::get('dashboard', function () {
 
 
       
- return view('layouts.dashboard', compact('user','count','partTepic','parVars','parChaca', 'capitalInvertido', 'proyectosRegistrados','proyectosRegistradosList','ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dec','capitaTep','capitaVars','capitaChaca'));
+ return view('layouts.dashboard', compact('user','numProyectos','count','partTepic','parVars','parChaca', 'capitalInvertido', 'proyectosRegistrados','proyectosRegistradosList','ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dec','capitaTep','capitaVars','capitaChaca'));
 });
 //------------------------------------------------------------Rutas BarloTepic------------------------------------------------------------
 //invertir invertirBarloTepic
@@ -87,10 +88,10 @@ Route::post('invertirBarloTepic', function(Request $request){
     $user = Auth::user();
     if($nuevaInversion-> monto = $request->input('cantidadInvertida') <  750000 || $user->capital < 1  ){
 
-    return redirect('/invertirBarloTepic')->with('error', 'No puede ingresar valores inferiores al valor de la accion o su capital.');
+    return redirect('/dashboard')->with('error', 'No puede ingresar valores inferiores al valor de la accion o su capital.');
 
     }elseif( $nuevaInversion-> monto = $request->input('cantidadInvertida') > $user->capital ){
-        return redirect('/invertirBarloTepic')->with('error', 'No puede ingresar valores superiores a su capital a su capital.');
+        return redirect('/dashboard')->with('error', 'No puede ingresar valores superiores a su capital a su capital.');
     }else{
         $nuevaInversion-> proyecto = $request->input('proyectoId');
         $nuevaInversion-> tipoCotrato = $request->input('tipoCotrato');
@@ -98,7 +99,7 @@ Route::post('invertirBarloTepic', function(Request $request){
         $nuevaInversion-> monto = $request->input('cantidadInvertida');
         $nuevaInversion->save();
         DB::table('users')->where('id',  $user->id )->decrement('capital' , $nuevaInversion-> monto = $request->input('cantidadInvertida'));
-        return redirect('/invertirBarloTepic')->with('info', 'Inversion guardada.');
+        return redirect('/dashboard')->with('info', 'Inversion guardada.');
     }
 })->name('crear.inversion');
 
@@ -236,6 +237,57 @@ Route::put('user/{id}', function(Request $request, $id){
 })->name('user.update');
 
 //-------------------------------------------------------editar Usuario-----------------------------------------------------------------------------
+//-------------------------------------------------------Proyectos 2-----------------------------------------------------------------------------
+
+Route::get('proyectos', function (){
+    $user = Auth::user();
+    $proyects = Proyects::all();
+    return view ('layouts.proyectos' , compact('user', 'proyects'));
+});
+
+
+Route::get('inversion/{id}/invertir', function($id){
+    $user = Auth::user();
+    $proyecto = Proyects::findOrFail($id);
+    $disponible = DB::table("inversiones")->where('proyecto',  $id )->get()->sum("monto");
+
+    $vendido = $costo = DB::table("proyects")->where('id', $id )->sum("costo") - $disponible  ;
+    $historial = DB::table("inversiones")->where('userId',  $user->id )->get();
+
+    return view('layouts.invertir', compact('user','proyecto', 'disponible','historial', 'vendido' ));    
+})->name('inversion.invertir');
+
+
+Route::put('/inversion/{id}',function(Request $request, $id){
+    $inversion = new Inversiones;
+    $inversion->proyecto = $request->input('proyectoId');
+    $inversion->tipoCotrato = $request->input('tipoCotrato');
+    $inversion->monto = $request->input('cantidadInvertida');
+    $inversion->userId = $request->input('userId');
+    $inversion->save();
+    return redirect('/dashboard')->with('info', 'Inversion guardada.');
+})->name('inversion.invertirUpdate');
+
+Route::get('/desarrollo/{id}',function(Request $request, $id){
+    $user = Auth::user();
+    $capInvertido = DB::table("inversiones") ->where('userId',  $user->id )->where( 'proyecto' , $id )->get()->sum("monto");
+    $nomProyect = DB::table("proyects")->where( 'id' , $id )->value('name');
+    $inversInProy = DB::table('inversiones')->where( 'proyecto' , $id )->distinct('userId')->count('userId');
+    return view('layouts.desarrollo', compact('user','capInvertido','nomProyect','inversInProy'));
+})->name('desarrollo.ver');
+
+
+
+
+
+
+
+
+//-------------------------------------------------------Proyectos 2-----------------------------------------------------------------------------
+
+
+
+
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('layouts.dashboard');

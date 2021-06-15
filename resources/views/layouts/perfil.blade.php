@@ -94,18 +94,9 @@
                 <tbody>
                   @foreach ($historial as $item)
                   <tr>
-                    @if($item->proyecto =='1')         
-                    <td class="text-center">Barlo tepic</td>
-                    @elseif($item->proyecto =='2') 
-                    <td class="text-center">Barlo las varas</td>
-                    @elseif($item->proyecto =='3') 
-                    <td class="text-center">Barlo nuevo chacala</td>
-                    @endif
-                     @if($item->tipoCotrato =='1')         
-                     <td class="text-center">Ventas</td>
-                     @elseif($item->tipoCotrato =='2') 
-                     <td class="text-center">Porcentaje</td>
-                     @endif
+                           
+                    <td class="text-center">{{$item->id }}</td>
+                    <td class="text-center">{{$item->tipoCotrato }}</td>
                     <td class="text-center"><small>{{"$" . number_format($item->monto, 0, ",", ",")}}.00</small></td>
                     <td class="text-center"><small>{{  date('d-m-Y', strtotime($item->created_at))}}</small></td>
                   

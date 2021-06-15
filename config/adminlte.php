@@ -235,76 +235,11 @@ return [
             'icon'        => 'fas fa-tachometer-alt',
             'label_color' => 'success',
             
-        ],[
-            'text'    => 'Proyectos',
-            'icon'    => 'fas fa-chart-bar',
-            'submenu' => [
-                [
-                    'header' => 'Fraccionamientos Barlovento',
-                ],[
-                    
-                    'text' => 'Barlo Tepic ',
-                    'url'  => 'proyectoBarlovento',
-                    'icon' => 'far fa-registered',
-                    'label' => "new" ,
-                    'submenu' => [
-                        [
-                            'text' => 'Desarrollo',
-                            'url'  => 'barloventoTepic',
-                        ],[
-                            'text' => 'Invertir',
-                            'url'  => 'invertirBarloTepic',
-                        ],[
-                            'text' => 'Pagina web',
-                            'url'  => '#',
-                        ],
-                    ]
-                ],[
-                    'text' => 'Barlo Las Varas',
-                    'url'  => 'proyectoBarlovento',
-                    'icon' => 'far fa-registered',
-                    'label' => "new" ,
-                    'submenu' => [
-                        [
-                            'text' => 'Desarrollo ',
-                            'url'  => 'barloventoLasVaras',
-                        ],[
-                            'text' => 'Invertir',
-                            'url'  => 'invertirBarloLasVaras',
-                        ],[
-                            'text' => 'Pagina web',
-                            'url'  => '#',
-                        ],
-                    ]
-                ], [
-                    'text' => 'Barlo New chacala',
-                    'icon' => 'far fa-registered',
-                    'label' => "new" ,
-                    'submenu' => [
-                        [
-                            'text' => 'Desarrollo',
-                            'url'  => 'NewChacala',
-                        ],[
-                            'text' => 'Invertir',
-                            'url'  => 'invertirNewChacala',
-                        ],[
-                            'text' => 'Pagina web',
-                            'url'  => '#',
-                        ],
-                    ]
-                ],
-            ],
         ],
         [
-            'text'    => 'Cuenta',
-            'icon'    => 'fas fa-user-circle',
-            'submenu' => [
-                [
-                    'text' => 'Perfil',
-                    'url'  => 'profile',
-                    'icon' => 'fas fa-fw fa-user',
-                ],
-            ],
+            'text'        => 'Proyectos',
+            'url'       => 'proyectos',
+            'icon'        => 'fas fa-chart-bar',
         ],
     ],
 

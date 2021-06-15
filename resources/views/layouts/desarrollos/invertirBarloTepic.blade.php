@@ -109,7 +109,7 @@
         labels: ['Disponible', 'Comprado'],
         datasets: [{
             label: 'Acciones disponibles ',
-            data: [{{$disponibleTepic}},{{$porcProyecto}},],
+            data: [{{$disponibleTepic}},{{$porcProyecto}}],
             backgroundColor: [
                 'rgba(128, 255, 128, 0.75)',
                 'rgba(255, 92, 51, 0.75)',

@@ -38,7 +38,7 @@
                   <!-- small box -->
                   <div class="small-box bg-warning">
                     <div class="inner">
-                      <h3>3</h3>
+                      <h3><?php echo e($numProyectos); ?></h3>
                       <p>Proyectos registrados </p>
                     </div>
                     <div class="icon">
@@ -352,6 +352,45 @@
         }]
     },
 });
+  
+<?php if(session('info')): ?>
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    });
+    Toast.fire({
+      type: 'success',
+      title: '<?php echo e(session('info')); ?> ' 
+    })
+    
+    <?php endif; ?>
+    
+    <?php if(session('error')): ?>
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    });
+    Toast.fire({
+      type: 'warning',
+      title: '<?php echo e(session('error')); ?> ' 
+    })
+    
+    <?php endif; ?>
+    
 </script>
 <?php $__env->stopSection(); ?>
 
