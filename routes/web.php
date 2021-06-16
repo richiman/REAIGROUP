@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\User;
 use App\Proyects;
 use App\Inversiones;
+use App\Documentos;
 use App\Services\PayUService\Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
@@ -273,7 +274,10 @@ Route::get('/desarrollo/{id}',function(Request $request, $id){
     $capInvertido = DB::table("inversiones") ->where('userId',  $user->id )->where( 'proyecto' , $id )->get()->sum("monto");
     $nomProyect = DB::table("proyects")->where( 'id' , $id )->value('name');
     $inversInProy = DB::table('inversiones')->where( 'proyecto' , $id )->distinct('userId')->count('userId');
-    return view('layouts.desarrollo', compact('user','capInvertido','nomProyect','inversInProy'));
+    $numDocuments = DB::table("documentos")->where( 'idProyecto' , $id )->get()->count();
+    $documents = DB::table("documentos")->where( 'idProyecto' , $id )->get();
+  
+    return view('layouts.desarrollo', compact('documents','numDocuments','user','capInvertido','nomProyect','inversInProy'));
 })->name('desarrollo.ver');
 
 

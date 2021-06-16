@@ -37,7 +37,7 @@
                   <!-- small box -->
                   <div type="button" data-toggle="modal" data-target="#exampleModal" class="small-box bg-warning">
                     <div class="inner">
-                      <h3>10</h3>
+                      <h3>{{$numDocuments}}</h3>
                       <p>Documentos del proyecto</p>
                     </div>
                    
@@ -53,11 +53,16 @@
                           </div>
                           <div class="modal-body">
                             <ul class="list-group">
-                              <li class="list-group-item"><i class="fas fa-file-pdf"></i>  Escrituras <i class="fas fa-download float-right"></i></li>
-                              <li class="list-group-item"><i class="fas fa-file-pdf"></i>  Contrato de inversion <i class="fas fa-download float-right"></i></li>
-                              <li class="list-group-item"><i class="fas fa-file-pdf"></i>  Contrato de terreno <i class="fas fa-download float-right"></i></li>
-                              <li class="list-group-item"><i class="fas fa-file-pdf"></i>  Plan parcial <i class="fas fa-download float-right"></i></li>
-                              <li class="list-group-item"><i class="fas fa-file-pdf"></i>  Contrato de compraventa <i class="fas fa-download float-right"></i></li>
+                        @foreach ($documents as $document)
+                            
+                        <li class="list-group-item ">
+                          <i class="fas fa-file-pdf"></i>
+                          {{$document->nombre}} 
+                          <i class="fas fa-download float-right"></i>
+                        </li>
+                         
+                        @endforeach
+
                             </ul>
                           </div>
                           <div class="modal-footer">
@@ -66,6 +71,8 @@
                         </div>
                       </div>
                     </div>
+                     <!-- Modal Documentos -->
+
                     <div class="icon">
                       <i class="fas fa-file-alt"></i>
                     </div>
