@@ -57,8 +57,11 @@
                             
                         <li class="list-group-item ">
                           <i class="fas fa-file-pdf"></i>
-                          <?php echo e($document->nombre); ?> 
+                          <?php echo e(asset('docs/'.$document->nombre)); ?>
+
+                     
                           <i class="fas fa-download float-right"></i>
+                          
                         </li>
                          
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

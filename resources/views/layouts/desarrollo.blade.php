@@ -57,8 +57,10 @@
                             
                         <li class="list-group-item ">
                           <i class="fas fa-file-pdf"></i>
-                          {{$document->nombre}} 
+                          {{asset('Admin/public/docs/'.$document->nombre) }}
+                     
                           <i class="fas fa-download float-right"></i>
+                          
                         </li>
                          
                         @endforeach
