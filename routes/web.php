@@ -255,12 +255,18 @@ Route::get('inversion/{id}/invertir', function($id){
 Route::put('/inversion/{id}',function(Request $request, $id){
     $inversion = new Inversiones;
     $user = Auth::user();
-    $inversion->proyecto = $request->input('proyectoId');
-    $inversion->tipoCotrato = $request->input('tipoCotrato');
-    $inversion->monto = $request->input('cantidadInvertida');
-    $inversion->userId = $request->input('userId');
-    $inversion->save();
-    DB::table('users')->where('id',  $user->id )->decrement('capital' , $inversion-> monto = $request->input('cantidadInvertida'));
+    if( $user->capital < 1  ){
+        return redirect('/dashboard')->with('error', 'No puede ingresar valores inferiores al valor de la accion o su capital.');
+        }elseif( $inversion -> monto = $request->input('cantidadInvertida') > $user->capital ){
+            return redirect('/dashboard')->with('error', 'No puede ingresar valores superiores a su capital a su capital.');
+        }else{
+            $inversion->proyecto = $request->input('proyectoId');
+            $inversion->tipoCotrato = $request->input('tipoCotrato');
+            $inversion->monto = $request->input('cantidadInvertida');
+            $inversion->userId = $request->input('userId');
+            $inversion->save();
+            DB::table('users')->where('id',  $user->id )->decrement('capital' , $inversion-> monto = $request->input('cantidadInvertida'));
+        }
     return redirect('/dashboard')->with('info',  'Inversion guardada.' );
 })->name('inversion.invertirUpdate');
 
