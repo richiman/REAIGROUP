@@ -54,18 +54,12 @@
                           <div class="modal-body">
                             <ul class="list-group">
                         <?php $__currentLoopData = $documents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $document): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            
                         <li class="list-group-item ">
                           <i class="fas fa-file-pdf"></i>
-                          <?php echo e(asset('docs/'.$document->nombre)); ?>
-
-                     
+                          <a href="<?php echo e('https://reaigroup.com/Admin/public/docs/'.$document->nombre); ?>" download><?php echo e($document->nombre); ?></a> 
                           <i class="fas fa-download float-right"></i>
-                          
                         </li>
-                         
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
                             </ul>
                           </div>
                           <div class="modal-footer">

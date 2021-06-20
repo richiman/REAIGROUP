@@ -43,10 +43,10 @@
                                   <select type="number" class="form-control" name="cantidadInvertida"  onchange="myFunction(event)" required>
                                     <option value="0"> 0%</option>
                                     <option value="<?php echo e($proyecto->costoPaccion); ?>">10%</option>
-                                    <option value="1000000">20%</option>
-                                    <option value="1500000">30%</option>
-                                    <option value="2000000">40%</option>
-                                    <option value="2500000">50%</option>
+                                    <option value="<?php echo e($proyecto->costoPaccion * 2); ?>">20%</option>
+                                    <option value="<?php echo e($proyecto->costoPaccion * 3); ?>">30%</option>
+                                    <option value="<?php echo e($proyecto->costoPaccion * 4); ?>">40%</option>
+                                    <option value="<?php echo e($proyecto->costoPaccion * 5); ?>">50%</option>
                                   </select>  
                                   <br><br>
                                 </div>
@@ -88,18 +88,17 @@
             <tbody>
               <?php $__currentLoopData = $historial; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <tr>
-                <?php if($item->proyecto =='1'): ?>         
-                <td class="text-center">Barlo tepic</td>
-                <?php elseif($item->proyecto =='2'): ?> 
-                <td class="text-center">Barlo las varas</td>
-                <?php elseif($item->proyecto =='3'): ?> 
-                <td class="text-center">Barlo nuevo chacala</td>
+                <?php $__currentLoopData = $proyectos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $proyecto): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php if($item->proyecto ==  $proyecto->id): ?>
+                <th scope="row"><?php echo e($proyecto->name); ?></th>
+                <?php elseif($item->proyecto == $proyecto->id): ?>
                 <?php endif; ?>
-                 <?php if($item->tipoCotrato =='1'): ?>         
-                 <td class="text-center">Ventas</td>
-                 <?php elseif($item->tipoCotrato =='2'): ?> 
-                 <td class="text-center">Porcentaje</td>
-                 <?php endif; ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  <?php if($item->tipoCotrato =='1'): ?>         
+                  <td class="text-center">Ventas</td>
+                  <?php elseif($item->tipoCotrato =='2'): ?> 
+                  <td class="text-center">Porcentaje</td>
+                  <?php endif; ?>
                 <td class="text-center"><small><?php echo e("$" . number_format($item->monto, 0, ",",",")); ?>.00</small></td>
                 <td class="text-center"><small><?php echo e(date('d-m-Y',strtotime($item->created_at))); ?></small></td>
                 
@@ -127,7 +126,6 @@
                 backgroundColor: [
                     'rgba(128, 255, 128, 0.75)',
                     'rgba(255, 92, 51, 0.75)',
-                   
                 ],
               borderWidth: 1
             }]

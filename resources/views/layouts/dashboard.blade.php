@@ -106,38 +106,16 @@
                             <strong>Proyectos con participacion {{$proyectosRegistrados}}</strong>
                           </p>
                         <!-- /.progress-group -->
-                      
-
+                        @foreach ($proyectos as $proyecto)
                           <div class="progress-group"> 
-                            @foreach ($proyectosRegistradosList as $item)
-                            @if($item->proyecto == 1)         
-                            Barlovento tepic  
-                            <span class="float-right"><b>0</b>/100</span>
-                            <div class="progress progress-sm">
-                              <div class="progress-bar bg-primary" style="width: 0%"></div>
+                             {{$proyecto->name}}
+                             <span class="float-right"><b>0</b>/100</span>
+                             <div class="progress progress-sm ">
+                              <div class="progress-bar bg-primary " style="width: 0%"></div>
                             </div>
-                            <br>
-                          
-                             @elseif($item->proyecto == 2)         
-                             Barlovento las varas
-                             <span class="float-right"><b>0</b>/100</span>
-                             <div class="progress progress-sm">
-                               <div class="progress-bar bg-primary" style="width: 0%"></div>
-                             </div>
                              <br>
-                             @elseif($item->proyecto == 3)         
-                             Barlovento New chacal 
-                             <span class="float-right"><b>0</b>/100</span>
-                             <div class="progress progress-sm">
-                               <div class="progress-bar bg-primary" style="width: 0%"></div>
-                             </div>
-                             <br>
-                              @else
-                          @endif
+                          </div>
                           @endforeach
-                         
-                          
-                        </div>
                           <!-- /.progress-group -->
                         </div>
                         <!-- /.col -->
@@ -222,21 +200,11 @@
                           <ul class="chart-legend clearfix">
                             <li>
                               <div class="progress-group">
-                                @if($proyectosRegistradosList->proyecto ='1')         
-                                <i class="far fa-circle text-danger"></i> - Barlovento tepic 
+                                @foreach ($proyectos as $proyecto)
+                                <i class="far fa-circle text-success"></i> - {{$proyecto->name}}
                                 <br><br>
-                                @else
-                                @endif
-                                @if($proyectosRegistradosList->proyecto  ='2') 
-                                <i class="far fa-circle text-info"></i> - Barlovento Las varas
-                                <br><br>
-                                @else
-                                @endif
-                                @if($proyectosRegistradosList->proyecto  ='3') 
-                                <i class="far fa-circle text-warning"></i> - Barlovento Chacala
-                                <br><br>
-                                @else
-                                @endif
+                                @endforeach
+                              </div>
                             </li>
                           </ul>
                         </div>
@@ -250,7 +218,6 @@
                       <table class="table bg-dark  ">
                         <thead>
                           <tr>
-                            <th class="text-center" scope="col">Coin</th>
                             <th class="text-center" scope="col">Proyecto</th>
                             <th class="text-center" scope="col">Inversion</th>
                             <th class="text-center" scope="col">Participacion</th>
@@ -258,40 +225,14 @@
                           </tr>
                         </thead>
                         <tbody>
-                          
-                           
-                          @if($proyectosRegistradosList->proyecto ='1')    
-                          <tr>     
-                          <td class="text-center"><img style=" width: 25px;" src="..\imagenes\t.png" /> </td>  
-                            <td class="text-center"> Barlovento tepic</td>   
-                            <td class="text-center text-success">{{"$ " . number_format($capitaTep, 0, ",", ",")}}.00</td>
-                            <td class="text-center text-success">{{$partTepic}}%</td>
-                            <td class="text-center text-success">$ 750,000.00</td>
+                          @foreach ($proyectos as $proyecto)
+                          <tr> 
+                          <th scope="row" class="text-center text-info">{{$proyecto->name}}</th>
+                          <th scope="row" class="text-center text-success">{{"$ " . number_format($inversion->where('proyecto', $proyecto->id)->sum('monto'), 0, ",", ",")}}.00</th>
+                          <th scope="row" class="text-center text-info">{{$inversion->where('proyecto', $proyecto->id)->sum('monto')   / $proyecto->costo * 100 }} %</th>
+                          <th scope="row" class="text-center text-danger">{{"$ " . number_format($proyecto->costoPaccion, 0, ",", ",")}}.00</th>
+                          @endforeach
                           </tr>
-                          @else
-                          @endif
-                          <tr>
-                           @if($proyectosRegistradosList->proyecto ='2') 
-                           <td class="text-center"><img style=" width: 25px;" src="..\imagenes\l.png" /> </td>  
-                           <td class="text-center"> Barlovento Las varas</td>   
-                           <td class="text-center text-success">{{"$ " . number_format($capitaVars, 0, ",", ",")}}.00</td>
-                           <td class="text-center text-success">{{$parVars}}%</td>
-                           <td class="text-center text-success">$ 500,000.00</td>
-                          </tr>
-                          @else
-                          @endif
-                          <tr>
-                           @if($proyectosRegistradosList->proyecto ='3') 
-                            <td class="text-center"><img style=" width: 25px;" src="..\imagenes\c.png" /> </td>  
-                            <td class="text-center">  Barlovento Chacala</td>  
-                            <td class="text-center text-success">{{"$ " . number_format($capitaChaca, 0, ",", ",")}}.00</td>
-                            <td class="text-center text-success">{{$parChaca}}%</td>
-                            <td class="text-center text-success">$ 500,000.00</td>
-                          </tr>
-                          @else 
-
-                           @endif
-                         
                         </tbody>
                       </table>
                     </div>
@@ -305,27 +246,8 @@
     //--------------
     //- pie CHART -
    //--------------
-   var ctx = document.getElementById('pieChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        labels: ['Barlovento tepic', 'Barlovento Las varas','Barlovento Chacala'],
-        datasets: [{
-            label: 'Acciones disponibles ',
-            data: [{{$capitaTep}},{{$capitaVars}},{{$capitaChaca}}],
-            backgroundColor: [
-                'rgba(255, 99, 142, 0.3)',
-                'rgba(54, 162, 235, 0.3)',
-                'rgba(255, 206, 86, 0.3)',
-            ],
-          borderWidth: 1
-        }]
-    }, options:{
-      responsive: true
-    },
-});
-
     
+ 
     var ctx = document.getElementById('barChart2').getContext('2d');
     var myChart = new Chart(ctx, {
     type: 'line',
@@ -352,6 +274,53 @@
         }]
     },
 });
+
+
+var obj = {!! json_encode(($proyectos)->toArray()) !!};
+var arreglo = [];
+  for (let step = 0; step < obj.length ; step++) {
+    arreglo.push(obj[step].name);
+  }
+var obj2 = {!! json_encode(($inversion)->toArray()) !!};
+var arreglo2 = [];
+    var holder = []
+     obj2.forEach( index => {
+                  const data = holder.find( i => i.proyecto=== index.proyecto)
+                 if(!data){
+                   holder.push({proyecto:index.proyecto,monto:index.monto})
+                   }else{
+                    data.monto = parseInt(data.monto) + parseInt(index.monto)
+                   }
+                  });
+            for (let step = 0; step < holder.length ; step++) {
+              arreglo2.push(holder[step].monto);
+            
+            }
+  var ctx = document.getElementById('pieChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+      labels: arreglo,
+      datasets: [{
+          label: 'Acciones disponibles ',
+          data: arreglo2,
+          backgroundColor: [
+              'rgba(255, 99, 142, 0.3)',
+              'rgba(54, 162, 235, 0.3)',
+              'rgba(255, 206, 86, 0.3)',
+              'rgba(235, 136, 186, 0.3)','rgba(255, 99, 142, 0.3)',
+              'rgba(54, 162, 235, 0.3)',
+              'rgba(255, 206, 86, 0.3)',
+              'rgba(235, 136, 186, 0.3)',
+          ],
+        borderWidth: 1
+      }]
+  }, options:{
+    responsive: true
+  },
+  });
+
+
   
 @if (session('info'))
     const Toast = Swal.mixin({
@@ -367,7 +336,7 @@
     });
     Toast.fire({
       type: 'success',
-      title: '{{session('info')}} ' 
+      title: '{{session('info')}} '
     })
     
     @endif

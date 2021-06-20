@@ -43,10 +43,10 @@
                                   <select type="number" class="form-control" name="cantidadInvertida"  onchange="myFunction(event)" required>
                                     <option value="0"> 0%</option>
                                     <option value="{{ $proyecto->costoPaccion}}">10%</option>
-                                    <option value="1000000">20%</option>
-                                    <option value="1500000">30%</option>
-                                    <option value="2000000">40%</option>
-                                    <option value="2500000">50%</option>
+                                    <option value="{{ $proyecto->costoPaccion * 2}}">20%</option>
+                                    <option value="{{ $proyecto->costoPaccion * 3}}">30%</option>
+                                    <option value="{{ $proyecto->costoPaccion * 4}}">40%</option>
+                                    <option value="{{ $proyecto->costoPaccion * 5}}">50%</option>
                                   </select>  
                                   <br><br>
                                 </div>
@@ -88,18 +88,17 @@
             <tbody>
               @foreach ($historial as $item)
               <tr>
-                @if($item->proyecto =='1')         
-                <td class="text-center">Barlo tepic</td>
-                @elseif($item->proyecto =='2') 
-                <td class="text-center">Barlo las varas</td>
-                @elseif($item->proyecto =='3') 
-                <td class="text-center">Barlo nuevo chacala</td>
+                @foreach ($proyectos as $proyecto)
+                @if ($item->proyecto ==  $proyecto->id)
+                <th scope="row">{{$proyecto->name}}</th>
+                @elseif($item->proyecto == $proyecto->id)
                 @endif
-                 @if($item->tipoCotrato =='1')         
-                 <td class="text-center">Ventas</td>
-                 @elseif($item->tipoCotrato =='2') 
-                 <td class="text-center">Porcentaje</td>
-                 @endif
+                @endforeach
+                  @if($item->tipoCotrato =='1')         
+                  <td class="text-center">Ventas</td>
+                  @elseif($item->tipoCotrato =='2') 
+                  <td class="text-center">Porcentaje</td>
+                  @endif
                 <td class="text-center"><small>{{"$" . number_format($item->monto, 0, ",",",")}}.00</small></td>
                 <td class="text-center"><small>{{date('d-m-Y',strtotime($item->created_at))}}</small></td>
                 
@@ -127,7 +126,6 @@
                 backgroundColor: [
                     'rgba(128, 255, 128, 0.75)',
                     'rgba(255, 92, 51, 0.75)',
-                   
                 ],
               borderWidth: 1
             }]

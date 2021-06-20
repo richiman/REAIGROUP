@@ -40,19 +40,13 @@ Route::get('profile', function () {
 Route::get('dashboard', function () {
     $user = Auth::user();
     $count = DB::table('users')->count();
+    $proyectos = Proyects::All();
+    $inversion = DB::table("inversiones")->where('userId', $user->id)->get();
+    
     $capitalInvertido = DB::table("inversiones")->where('userId',  $user->id)->get()->sum("monto");
     $numProyectos = DB::table("proyects")->get()->count();
     $proyectosRegistrados = DB::table("inversiones")->where('userId',  $user->id)->get()->count();
-    $capitaTep = DB::table("inversiones")->where('userId',  $user->id)->where('proyecto',  1)->get()->sum("monto");
-    $capitaVars = DB::table("inversiones")->where('userId',  $user->id)->where('proyecto',  2)->get()->sum("monto");
-    $capitaChaca = DB::table("inversiones")->where('userId',  $user->id)->where('proyecto',  3)->get()->sum("monto");
-
-    $partTepic = $capitaTep / 7500000 * 100 ;
-    $parVars = $capitaVars / 10000000 * 200 ;
-    $parChaca = $capitaChaca / 10000000 * 100 ;
-
     $proyectosRegistradosList = DB::table("inversiones")->where('userId',  $user->id )->get()->unique('proyecto');
-    
     $ene =  DB::table('inversiones')->where('userId', $user->id)->whereMonth('created_at', '=', '01')->get()->sum('monto');
     $feb =  DB::table('inversiones')->where('userId', $user->id)->whereMonth('created_at', '=', '02')->get()->sum('monto');
     $mar =  DB::table('inversiones')->where('userId', $user->id)->whereMonth('created_at', '=', '03')->get()->sum('monto');
@@ -68,7 +62,7 @@ Route::get('dashboard', function () {
 
 
       
- return view('layouts.dashboard', compact('user','numProyectos','count','partTepic','parVars','parChaca', 'capitalInvertido', 'proyectosRegistrados','proyectosRegistradosList','ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dec','capitaTep','capitaVars','capitaChaca'));
+ return view('layouts.dashboard', compact('user','inversion','proyectos','numProyectos','count', 'capitalInvertido', 'proyectosRegistrados','proyectosRegistradosList','ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dec'));
 });
 //------------------------------------------------------------Rutas BarloTepic------------------------------------------------------------
 //invertir invertirBarloTepic
@@ -176,6 +170,7 @@ Route::get('NewChacala', function () {
 Route::post('invertirNewChacala', function(Request $request){
     $nuevaInversion = new Inversiones;
     $user = Auth::user();
+    $proyectos = Proyects::All();
     if($nuevaInversion-> monto = $request->input('cantidadInvertida') <  500000 || $user->capital < 1  ){
 
     return redirect('/invertirNewChacala')->with('error', 'No puede ingresar valores inferiores al valor de la accion o su capital.');
@@ -246,27 +241,27 @@ Route::get('proyectos', function (){
     return view ('layouts.proyectos' , compact('user', 'proyects'));
 });
 
-
 Route::get('inversion/{id}/invertir', function($id){
     $user = Auth::user();
+    $proyectos = Proyects::All();
     $proyecto = Proyects::findOrFail($id);
     $disponible = DB::table("inversiones")->where('proyecto',  $id )->get()->sum("monto");
-
     $vendido = $costo = DB::table("proyects")->where('id', $id )->sum("costo") - $disponible  ;
     $historial = DB::table("inversiones")->where('userId',  $user->id )->get();
-
-    return view('layouts.invertir', compact('user','proyecto', 'disponible','historial', 'vendido' ));    
+    return view('layouts.invertir', compact('user','proyecto', 'disponible','historial', 'vendido','proyectos' ));    
 })->name('inversion.invertir');
 
 
 Route::put('/inversion/{id}',function(Request $request, $id){
     $inversion = new Inversiones;
+    $user = Auth::user();
     $inversion->proyecto = $request->input('proyectoId');
     $inversion->tipoCotrato = $request->input('tipoCotrato');
     $inversion->monto = $request->input('cantidadInvertida');
     $inversion->userId = $request->input('userId');
     $inversion->save();
-    return redirect('/dashboard')->with('info', 'Inversion guardada.');
+    DB::table('users')->where('id',  $user->id )->decrement('capital' , $inversion-> monto = $request->input('cantidadInvertida'));
+    return redirect('/dashboard')->with('info',  'Inversion guardada.' );
 })->name('inversion.invertirUpdate');
 
 Route::get('/desarrollo/{id}',function(Request $request, $id){
@@ -276,17 +271,8 @@ Route::get('/desarrollo/{id}',function(Request $request, $id){
     $inversInProy = DB::table('inversiones')->where( 'proyecto' , $id )->distinct('userId')->count('userId');
     $numDocuments = DB::table("documentos")->where( 'idProyecto' , $id )->get()->count();
     $documents = DB::table("documentos")->where( 'idProyecto' , $id )->get();
-  
     return view('layouts.desarrollo', compact('documents','numDocuments','user','capInvertido','nomProyect','inversInProy'));
 })->name('desarrollo.ver');
-
-
-
-
-
-
-
-
 //-------------------------------------------------------Proyectos 2-----------------------------------------------------------------------------
 
 

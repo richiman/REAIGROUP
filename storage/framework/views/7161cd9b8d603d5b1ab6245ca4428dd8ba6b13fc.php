@@ -10,23 +10,25 @@
 <div class="container-fluid ">
     <?php $__currentLoopData = $proyects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <!-- Card Start -->
-            <div class="card bg-dark px-2 py" >
+            <div class="card bg-dark px-3 py-2" >
                 <div class="row ">
-                <div class="col-md-7 px-2">
+                <div class="col-md-8 px-2">
                     <div class="card-block px-6">
                     <h2 class=" text-bold"> <?php echo e($item->name); ?> </h2>
                     <h5 class="card-text text-justify"> <?php echo e($item->desc); ?> </h5>
                     <p class="card-text text-muted"> <?php echo e($item->explic); ?>  </p>
                     <br><br>
-                    <form action="">
-                        <a href="<?php echo e(route('desarrollo.ver',$item->id)); ?>" class="mt-auto btn btn-primary px-5">Desarrollo</a>
-                        <a href="<?php echo e(route('inversion.invertir',$item->id)); ?>" class="mt-auto btn btn-success px-5">Invertir</a>
-                        <a href="#" class="mt-auto btn btn-info px-5">Pagina web</a>
+                    <form class="text-center" action="">
+                        <a href="<?php echo e(route('desarrollo.ver',$item->id)); ?>" class="mt-auto btn btn-primary btn-sm px-3">Desarrollo</a>
+                        <a href="<?php echo e(route('inversion.invertir',$item->id)); ?>" class="mt-auto btn btn-success btn-sm px-3">Invertir</a>
+                        <a href="#" class="mt-auto btn btn-info btn-sm px-3">Pagina web</a>
                     </form>
+                    <br>
                     </div>
                 </div>
+               
                 <!-- Carousel start -->
-                <img style=" height: 300px;   margin-left: auto; margin-right: auto; " src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT46-O_sN9KxdRbVL765n7j4-atMmvw9CpMek1fDcJ56cEs_qnIl7y1xYMr91X8OVGzGjE&usqp=CAU" alt="">
+                <img style=" width: 100%; height: auto; max-width: 400px;" class="rounded float-right" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT46-O_sN9KxdRbVL765n7j4-atMmvw9CpMek1fDcJ56cEs_qnIl7y1xYMr91X8OVGzGjE&usqp=CAU" alt="">
                 <!-- End of carousel -->
                 </div>
             </div>

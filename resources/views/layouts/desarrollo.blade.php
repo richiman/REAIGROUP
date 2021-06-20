@@ -54,17 +54,12 @@
                           <div class="modal-body">
                             <ul class="list-group">
                         @foreach ($documents as $document)
-                            
                         <li class="list-group-item ">
                           <i class="fas fa-file-pdf"></i>
-                          {{asset('Admin/public/docs/'.$document->nombre) }}
-                     
+                          <a href="{{'https://reaigroup.com/Admin/public/docs/'.$document->nombre}}" download>{{$document->nombre}}</a> 
                           <i class="fas fa-download float-right"></i>
-                          
                         </li>
-                         
                         @endforeach
-
                             </ul>
                           </div>
                           <div class="modal-footer">
