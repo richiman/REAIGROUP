@@ -16,7 +16,7 @@ return [
 
     'title' => '',
     'title_prefix' => '',
-    'title_postfix' => ' | REAIGROUP',
+    'title_postfix' => ' | JASPARGROUP ',
 
     /*
     |--------------------------------------------------------------------------
