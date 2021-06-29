@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>JASPHAR  GROUP</b> ',
+    'logo' => '<b>JASPHAR|GROUP</b> ',
     'logo_img' => 'vendor/adminlte/dist/img/R.png',
     'logo_img_class' => 'brand-image img-circle elevation-3 ',
     'logo_img_xl' => null,
