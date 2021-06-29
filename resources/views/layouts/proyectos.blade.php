@@ -21,7 +21,7 @@
                     <form class="text-center" action="">
                         <a href="{{route('desarrollo.ver',$item->id)}}" class="mt-auto btn btn-primary btn-sm px-3">Desarrollo</a>
                         <a href="{{route('inversion.invertir',$item->id)}}" class="mt-auto btn btn-success btn-sm px-3">Invertir</a>
-                        <input class="mt-auto btn btn-info btn-sm px-3" type="button" value="Pagina web" onclick="window.open('http://{{$item->link}}')">
+                        <input class="mt-auto btn btn-info btn-sm px-3" type="button" value="Web del proyecto" onclick="window.open('http://{{$item->link}}')">
                     </form>
                     <br>
                     </div>
